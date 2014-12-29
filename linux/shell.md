@@ -20,3 +20,6 @@ ctrl + c 结束正在运行的进程
 jobs 查看后台进程
 nohup command & 让进程在后台运行 即使终端推出也不结束
 ```
+sed
+--------------
+- sed [options] 'command' flie(s)
