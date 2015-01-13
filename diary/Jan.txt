@@ -193,9 +193,14 @@ git
 ------
 git config --global user.name "xx" // 设置用户名
 git config --global user.email "xx@xxx.com" // 设置邮箱
+git remote add origin git@github.com:michaelliao/learngit.git // 关联远程仓库
+ssh-keygen -t rsa -C "youremail@example.com" // 生成SSH秘钥
 
 1.13
 =======
+szp_arttact_2015
+ThinkPHP
+--------
 空操作
     public function _empty() // 仅在你的控制器类继承系统的Think\Controller类才有效 否则可以自定义__call()
     class EmptyController extends Controller // 空控制器
@@ -227,6 +232,7 @@ git config --global user.email "xx@xxx.com" // 设置邮箱
     'DB_PREFIX'    =>  '',     // 数据库表前缀
     'DB_DSN'       =>  '',     // 数据库连接DSN 用于PDO方式
     'DB_CHARSET'   =>  'utf8', // 数据库的编码 默认为utf8
+    'DB_DEBUG'  =>  TRUE, // 数据库调试模式 开启后可以记录SQL日志 3.2.3新增
 
 D方法-实例化具体数据模型
     如果在Linux环境下面，一定要注意D方法实例化的时候的模型名称的大小写// 大驼峰
@@ -240,3 +246,115 @@ M方法-不加载具体模型类,性能更高
     使用M方法的前提是未定义具体的模型类
     $Model = M(); // $Model = new Model(); 实例化控模型,可用于执行原生SQL
     D方法没找到定义的模型类,则会自动调用M方法
+
+模型
+-------
+'DB_FIELDS_CACHE'=>false // 关闭字段缓存(调试模式下用)
+getDbFields() // 获取当前数据对象的全部字段信息
+分布式数据库支持
+    调用模型的CURD操作的话，系统会自动判断当前执行的方法的读操作还是写操作，如果你用的是原生SQL，那么需要注意系统的默认规则： 写操作必须用模型的execute方法，读操作必须用模型的query方法，否则会发生主从读写错乱的情况
+连贯/链式操作
+-------
+    系统支持的连贯操作方法有：
+        连贯操作    作用  支持的参数类型
+        where*  用于查询或者更新条件的定义   字符串、数组和对象
+        table   用于定义要操作的数据表名称   字符串和数组
+        alias   用于给当前数据表定义别名    字符串
+        data    用于新增或者更新数据之前的数据对象赋值     数组和对象
+        field   用于定义要查询的字段（支持字段排除）  字符串和数组
+        order   用于对结果排序     字符串和数组
+        limit   用于限制查询结果数量  字符串和数字
+        page    用于查询分页（内部会转换成limit）     字符串和数字
+        group   用于对查询的group支持   字符串
+        having  用于对查询的having支持  字符串
+        join*   用于对查询的join支持    字符串和数组
+        union*  用于对查询的union支持   字符串、数组和对象
+        distinct    用于查询的distinct支持     布尔值
+        lock    用于数据库的锁机制   布尔值
+        cache   用于查询缓存  支持多个参数
+        relation    用于关联查询（需要关联模型支持）    字符串
+        result  用于返回数据转换    字符串
+        validate    用于数据自动验证    数组
+        auto    用于数据自动完成    数组
+        filter  用于数据过滤  字符串
+        scope*  用于命名范围  字符串、数组
+        bind*   用于数据绑定操作    数组或多个参数
+        token   用于令牌验证  布尔值
+        comment     用于SQL注释     字符串
+        index   用于数据集的强制索引（3.2.3新增）     字符串
+        strict  用于数据入库的严格检测（3.2.3新增）    布尔值
+        所有的连贯操作都返回当前的模型实例对象（this）,其中带*标识的表示支持多次调用
+    where
+        $Model->where("id=%d and username='%s' and xx='%f'",$id,$username,$xx)->select(); // 配合预处理机制,安全 vsprintf() (?
+        支持数组和表达式
+            表达式     含义
+            EQ  等于（=）
+            NEQ     不等于（<>）
+            GT  大于（>）
+            EGT     大于等于（>=）
+            LT  小于（<）
+            ELT     小于等于（<=）
+            LIKE    模糊查询
+            [NOT] BETWEEN   （不在）区间查询
+            [NOT] IN    （不在）IN 查询
+            EXP     表达式查询，支持SQL语法
+        多次的数组条件表达式会最终合并,但字符串条件则只支持一次 // 支持多次调用
+    table // 需要完整表名
+        切换数据表
+        多表操作
+        table('__USER__') // 简化数据表前缀的传入
+        支持字符串和数组 (参考参数传入方式?
+            table('think_user user,think_role role')
+            table(array('think_user'=>'user','think_role'=>'role'))
+        一般情况下,无需调用table方法，默认会自动获取当前模型对应或者定义的数据表
+    alias
+        alias用于设置当前数据表的别名，便于使用其他的连贯操作例如join方法等
+        $Model->alias('a')->join('__DEPT__ b ON b.user_id= a.id')->select();
+    data-设置当前要操作的数据对象的值
+        data是数组则可以直接add($data)
+        data($data)->save() // save($data) // save 中有主键则省略where
+    find-读操作
+    field-标识要返回或者操作的字段，可以用于查询和写入操作
+        // 参数串支持别名和函数
+        // 支持数组/别名/函数
+        field(true)的用法会显式的获取数据表的所有字段列表,哪怕你的数据表有100个字段
+        $Model->field('content',true)->select(); // 排除字段 第一个字段支持串和数组
+        $Model->field('title,email,content')->save($data); // 如果data数据中包含有title,email,content之外的字段数据的话，也会过滤掉
+    order-用于排序
+        支持串和数组
+    limit-限制操作条数
+        // 支持串和两个数字
+    page-更人性化的分页查询
+        // 支持串和两个数字
+        $Article->limit(25)->page(3)->select(); // page方法还可以和limit方法配合使用,page表示第几页
+    group-分组
+    having-用于配合group方法完成从分组的结果中筛选（通常是聚合条件）数据
+    join-用于表关系        
+        INNER JOIN: 如果表中有至少一个匹配，则返回行，等同于 JOIN
+        LEFT JOIN: 即使右表中没有匹配，也从左表返回所有的行
+        RIGHT JOIN: 即使左表中没有匹配，也从右表返回所有的行
+        FULL JOIN: 只要其中一个表中存在匹配，就返回行
+        支持多次join
+        第二个参数支持INNER LEFT RIGHT FULL 默认INNER
+        支持数组 // 第二个参数无效。因此必须在字符串中显式定义join类型 且只能使用一次
+    union-合并两个或多个 SELECT 语句的结果集
+        union('SELECT name FROM think_user_1') // 串用法
+        union(array('field'=>'name','table'=>'think_user_1')) // 数组用法
+        union(array('SELECT name FROM think_user_1','SELECT name FROM think_user_2')) // 数组用法2
+        第二个参数为true表示UNION ALL
+    distinct(true)-返回唯一不同的值
+    lock(true)-数据库锁机制 (?)
+    cache(true)-查询缓存 // 不在进行数据库查询
+        默认情况下,缓存有效期和缓存类型是由DATA_CACHE_TIME和DATA_CACHE_TYPE配置参数决定的，但cache方法可以单独指定
+            cache(true,60,'xcache') xcache (?)
+            cache('key',60) // cache方法可以指定缓存标识 这样外部就可以通过S方法直接获取查询缓存的数据 $data = S('key');
+        指定查询缓存的标识可以使得查询缓存更有效率
+
+模板地址
+--------
+http://themeforest.net/item/metronic-responsive-admin-dashboard-template/full_screen_preview/4021469
+http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?WT.oss_phrase=admin&WT.oss_rank=2&WT.z_author=keenthemes&WT.ac=search_list
+
+PHP
+-------
+parse_url
