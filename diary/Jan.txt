@@ -198,7 +198,6 @@ ssh-keygen -t rsa -C "youremail@example.com" // 生成SSH秘钥
 
 1.13
 =======
-szp_arttact_2015
 ThinkPHP
 --------
 空操作
@@ -358,3 +357,28 @@ http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469
 PHP
 -------
 parse_url
+
+1.14
+======
+PHP
+------
+file_get_contents($filename[, $use_include_path, $context...)
+$opts = array(
+    'http'=>array(
+        'method' => 'POST',
+        'header' => 'Content-Type: application/x-www-form-urlencoded',
+        'content' => $query_str,
+    ),
+);
+$context = stream_context_create($opts);
+http_build_query($arr)
+
+ignore_user_abort()
+
+云片短息规则
+------------
+同1个手机发相同内容，30秒内最多发送1次，5分钟内最多发送3次 
+
+RPC (Remote Procedure Call Protocol) - 远程过程调用协议
+
+task:rewrite (index.php)
