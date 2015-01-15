@@ -381,4 +381,35 @@ ignore_user_abort()
 
 RPC (Remote Procedure Call Protocol) - 远程过程调用协议
 
-task:rewrite (index.php)
+task:rewrite (index.php) // done 
+
+1.15
+======
+LoadModule rewrite_module modules/mod_rewrite.so // apache载入url重写模块(使.htaccess生效)
+urlencode() 除-_.外转%xx(两位十六进制数) 空格编码为加号(+) // urldecode 解码
+htmlentities() 编码成html实体 // html_entity_decode() 解码成可用字符
+
+ThinkPHP
+------
+模版
+------
+    $this->assign('name', $value); // 赋值 支持传一个键值对数组
+    使用php标签或者{$var_name[.xxx]}解析变量 支持{$Think.xx} 输出系统常量/变量/配置参数/语言变量
+    $this->display() // 渲染模板
+    [模块@][控制器:][操作]     常用写法，支持跨模块 模板主题可以和theme方法配合 // 渲染参数
+    fetch('模板文件') // 渲染并返回值
+    show('渲染内容'[,'字符编码'][,'输出类型']) // 直接渲染内容(不使用模板)
+    可以对模板变量使用函数 // {$create_time|date="y-m-d",###}
+    支持{:} 作为php模板标签
+    支持默认值 // {$user.nickname|default="这家伙很懒，什么也没留下"}
+    支持运算符 // 在使用运算符的时候，不再支持点语法和常规的函数用法
+    支持三元运算符
+    <block name="xxx"></block> 定义区块
+    <extend name="xx" /> 继承 // name可以直接写路径
+    <include file="ss/xx"/> 包含 // 使用模版表达式 模块@主题/控制器/操作 可包含多个,用逗号隔开
+    子模板中只能定义基础模版中有的区块,不能定义其它模板内容
+
+other
+--------
+Request For Comments（RFC），是一系列以编号排定的文件 // 一种建议标准(如 指定 MIME Type 媒体类型)
+    客户端自己定义的格式，一般只能以 application/x- 开头
