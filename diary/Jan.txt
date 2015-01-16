@@ -34,7 +34,7 @@ Content-Length:256;   改变头可以设置xml或者json格式
 http://www.rdsms.net/
 
 sublime package control
---------------
+--------------  Ctrl+`/View->Show Console
 import urllib2,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), 'wb' ).write(by) if dh == h else None; print('Error validating download (got %s instead of %s), please try manual install' % (dh, h) if dh != h else 'Please restart Sublime Text to finish installation') 
 
 1.10
@@ -408,8 +408,40 @@ ThinkPHP
     <extend name="xx" /> 继承 // name可以直接写路径
     <include file="ss/xx"/> 包含 // 使用模版表达式 模块@主题/控制器/操作 可包含多个,用逗号隔开
     子模板中只能定义基础模版中有的区块,不能定义其它模板内容
+    提供inport/load 标签引入js和css文件 也可以用js/css标签 或直接使用html的script和link标签
+    literal标签里的内容不解析(原样输出)
+    模板内可以使用php的注释
 
 other
 --------
 Request For Comments（RFC），是一系列以编号排定的文件 // 一种建议标准(如 指定 MIME Type 媒体类型)
     客户端自己定义的格式，一般只能以 application/x- 开头
+
+1.16
+========
+ThinkPHP
+--------
+模版替换规则
+    __ROOT__： 会替换成当前网站的地址（不含域名）
+    __APP__： 会替换成当前应用的URL地址 （不含域名）
+    __MODULE__：会替换成当前模块的URL地址 （不含域名）
+    __CONTROLLER__（__或者__URL__ 兼容考虑）： 会替换成当前控制器的URL地址（不含域名）
+    __ACTION__：会替换成当前操作的URL地址 （不含域名）
+    __SELF__： 会替换成当前的页面URL
+    __PUBLIC__：会被替换成当前网站的公共目录 通常是 /Public/
+
+js闭包
+-------
+js1.js
+var MyFunc = function() {
+    var func1 = ...
+    var func2 = ...
+    return {
+        init:function() {
+            func1();
+            func2();
+        }
+    }
+}
+在js2.js中引入后执行
+MyFunc.init();
