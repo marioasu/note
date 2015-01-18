@@ -168,6 +168,7 @@ U方法-动态生成URL
 I方法-用于更加方便和安全的获取系统输入变量,可以用于任何地方
 	I('变量类型.变量名/修饰符',['默认值'],['过滤方法'],['额外数据源']) // 用法
     param变量类型支持自动判断当前请求类型
+    I('get.') // 获取整个$_GET数据
     path变量可以获取PATHINFO模式参数
     data类型变量可以用于获取不支持的变量类型的读取
         I('data.file1','','',$_FILES)
@@ -385,7 +386,7 @@ task:rewrite (index.php) // done
 
 1.15
 ======
-LoadModule rewrite_module modules/mod_rewrite.so // apache载入url重写模块(使.htaccess生效)
+LoadModule rewrite_module modules/mod_rewrite.so // apache载入url重写模块(使.htaccess生效)在.htaccess配置让url省略index.php
 urlencode() 除-_.外转%xx(两位十六进制数) 空格编码为加号(+) // urldecode 解码
 htmlentities() 编码成html实体 // html_entity_decode() 解码成可用字符
 
@@ -445,3 +446,11 @@ var MyFunc = function() {
 }
 在js2.js中引入后执行
 MyFunc.init();
+
+1.18
+========
+S() 设置缓存
+S(array(    'type'=>'memcache',    'host'=>'192.168.1.10',    'port'=>'11211',    'prefix'=>'think',    'expire'=>60)); // 初始化
+
+task - RPC限制调用方法
+task - pack()
