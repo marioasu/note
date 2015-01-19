@@ -452,5 +452,14 @@ MyFunc.init();
 S() 设置缓存
 S(array(    'type'=>'memcache',    'host'=>'192.168.1.10',    'port'=>'11211',    'prefix'=>'think',    'expire'=>60)); // 初始化
 
-task - RPC限制调用方法
+task - RPC限制调用方法 // done
 task - pack()
+
+1.19
+========
+<Files *.html>
+Order Allow,Deny
+Deny from all
+</Files>    // .htaccess文件 不允许直接访问html模板
+
+CNAME指别名记录也被称为规范名字
