@@ -445,3 +445,20 @@ var MyFunc = function() {
 }
 在js2.js中引入后执行
 MyFunc.init();
+
+1.17
+========
+vpn
+--------
+http://item.taobao.com/item.htm?spm=a1z09.2.9.10.UKi6Rt&id=12406169770&_u=hi38rc23a5c
+伺服器名稱： nance.tenacy.net
+激活地址：http://tenacy.swe.net/activate 付费季卡：【用名户：040533633097 密码：683549】
+
+HTTP
+--------
+状态码用来告诉HTTP客户端,HTTP服务器是否产生了预期的Response。HTTP/1.1协议中定义了5类状态码， 状态码由三位数字组成，第一个数字定义了响应的类别
+1XX 提示信息 - 表示请求已被成功接收，继续处理
+2XX 成功 - 表示请求已被成功接收，理解，接受
+3XX 重定向 - 要完成请求必须进行更进一步的处理
+4XX 客户端错误 - 请求有语法错误或请求无法实现
+5XX 服务器端错误 - 服务器未能实现合法的请求
