@@ -35,7 +35,7 @@ http://www.rdsms.net/
 
 sublime package control
 --------------  Ctrl+`/View->Show Console
-import urllib2,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), 'wb' ).write(by) if dh == h else None; print('Error validating download (got %s instead of %s), please try manual install' % (dh, h) if dh != h else 'Please restart Sublime Text to finish installation') 
+去 https://packagecontrol.io // 找到安装命令 
 
 1.10
 ======
@@ -168,6 +168,7 @@ U方法-动态生成URL
 I方法-用于更加方便和安全的获取系统输入变量,可以用于任何地方
 	I('变量类型.变量名/修饰符',['默认值'],['过滤方法'],['额外数据源']) // 用法
     param变量类型支持自动判断当前请求类型
+    I('get.') // 获取整个$_GET数据
     path变量可以获取PATHINFO模式参数
     data类型变量可以用于获取不支持的变量类型的读取
         I('data.file1','','',$_FILES)
@@ -194,7 +195,8 @@ git
 git config --global user.name "xx" // 设置用户名
 git config --global user.email "xx@xxx.com" // 设置邮箱
 git remote add origin git@github.com:michaelliao/learngit.git // 关联远程仓库
-ssh-keygen -t rsa -C "youremail@example.com" // 生成SSH秘钥
+ssh-keygen -t rsa -C "youremail@example.com" // 生成SSH秘钥 ~/.ssh/ 里
+ssh -T git@git.oschina.net (?)
 
 1.13
 =======
@@ -385,7 +387,7 @@ task:rewrite (index.php) // done
 
 1.15
 ======
-LoadModule rewrite_module modules/mod_rewrite.so // apache载入url重写模块(使.htaccess生效)
+LoadModule rewrite_module modules/mod_rewrite.so // apache载入url重写模块(使.htaccess生效)在.htaccess配置让url省略index.php
 urlencode() 除-_.外转%xx(两位十六进制数) 空格编码为加号(+) // urldecode 解码
 htmlentities() 编码成html实体 // html_entity_decode() 解码成可用字符
 
@@ -462,3 +464,30 @@ HTTP
 3XX 重定向 - 要完成请求必须进行更进一步的处理
 4XX 客户端错误 - 请求有语法错误或请求无法实现
 5XX 服务器端错误 - 服务器未能实现合法的请求
+
+1.18
+========
+S() 设置缓存
+S(array(    'type'=>'memcache',    'host'=>'192.168.1.10',    'port'=>'11211',    'prefix'=>'think',    'expire'=>60)); // 初始化
+
+task - RPC限制调用方法 // done
+task - pack()
+
+1.19
+========
+服务器配置
+--------
+<Files *.html>
+Order Allow,Deny
+Deny from all
+</Files>    // .htaccess文件 不允许直接访问html模板
+
+域名相关
+--------
+A (Address) 记录是用来指定主机名（或域名）对应的IP地址记录
+CNAME指别名记录也被称为规范名字
+ISP(Internet Service Provider)，互联网服务提供商，即向广大用户综合提供互联网接入业务、信息业务、和增值业务的电信运营商。
+
+linux
+-------
+lsb_release -a // 列出所有版本信息
