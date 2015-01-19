@@ -35,7 +35,7 @@ http://www.rdsms.net/
 
 sublime package control
 --------------  Ctrl+`/View->Show Console
-import urllib2,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), 'wb' ).write(by) if dh == h else None; print('Error validating download (got %s instead of %s), please try manual install' % (dh, h) if dh != h else 'Please restart Sublime Text to finish installation') 
+去 https://packagecontrol.io // 找到安装命令 
 
 1.10
 ======
@@ -195,7 +195,8 @@ git
 git config --global user.name "xx" // 设置用户名
 git config --global user.email "xx@xxx.com" // 设置邮箱
 git remote add origin git@github.com:michaelliao/learngit.git // 关联远程仓库
-ssh-keygen -t rsa -C "youremail@example.com" // 生成SSH秘钥
+ssh-keygen -t rsa -C "youremail@example.com" // 生成SSH秘钥 ~/.ssh/ 里
+ssh -T git@git.oschina.net (?)
 
 1.13
 =======
@@ -457,9 +458,19 @@ task - pack()
 
 1.19
 ========
+服务器配置
+--------
 <Files *.html>
 Order Allow,Deny
 Deny from all
 </Files>    // .htaccess文件 不允许直接访问html模板
 
+域名相关
+--------
+A (Address) 记录是用来指定主机名（或域名）对应的IP地址记录
 CNAME指别名记录也被称为规范名字
+ISP(Internet Service Provider)，互联网服务提供商，即向广大用户综合提供互联网接入业务、信息业务、和增值业务的电信运营商。
+
+linux
+=======
+lsb_release -a // 列出所有版本信息
