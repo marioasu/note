@@ -535,3 +535,52 @@ other
 -----
 Virtual Private Server 虚拟专用服务器
 
+1.21
+=====
+booklist
+-----
+Just for fun
+大教堂与集市
+Linux/Unix设计思想
+Unix编程艺术
+理解Unix进程
+
+git
+-----
+git reset --hard HEAD^  // HEAD~100或直接写版本号
+Git提供了一个命令git reflog用来记录你的每一次命令
+
+linux
+-----
+rpm -qa | grep xxx 查看程序是否已安装
+
+微信公众平台
+------------
+access_token是公众号的全局唯一票据，公众号调用各接口时都需使用access_token。开发者需要进行妥善保存。access_token的存储至少要保留512个字符空间。access_token的有效期目前为2个小时，需定时刷新，重复获取将导致上次获取的access_token失效
+    http请求方式: GET
+    https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
+    参数说明
+    参数  是否必须    说明
+    grant_type  是   获取access_token填写client_credential
+    appid   是   第三方用户唯一凭证
+    secret  是   第三方用户唯一凭证密钥，即appsecret
+    返回说明
+
+    正常情况下，微信会返回下述JSON数据包给公众号：
+
+    {"access_token":"ACCESS_TOKEN","expires_in":7200}
+    参数  说明
+    access_token    获取到的凭证
+    expires_in  凭证有效时间，单位：秒
+
+    错误时微信会返回错误码等信息，JSON数据包示例如下（该示例为AppID无效错误）:
+
+    {"errcode":40013,"errmsg":"invalid appid"}
+
+选择兼容模式和安全模式前，需在开发者中心填写消息加解密密钥EncodingAESKey
+在安全模式或兼容模式下，url上会新增两个参数encrypt_type和msg_signature。encrypt_type表示加密类型，msg_signature:表示对消息体的签名
+
+php
+------
+PHP-FPM是一个PHPFastCGI管理器，是只用于PHP的。
+/usr/local/php/sbin/php-fpm{start|stop|quit|restart|reload|logrotate}
