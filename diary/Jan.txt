@@ -584,3 +584,26 @@ php
 ------
 PHP-FPM是一个PHPFastCGI管理器，是只用于PHP的。
 /usr/local/php/sbin/php-fpm{start|stop|quit|restart|reload|logrotate}
+
+1.22
+======
+git
+------
+$ git rm -r --cached dir // 解除git对某目录的跟踪
+$ echo dir/ >> .gitignore
+$ git add .gitignore
+$ git commit -am 'ignore dir forever'
+git reset HEAD <filename> // 撤销对某文件的暂存
+
+#提交时转换为LF，检出时不转换
+git config --global core.autocrlf input
+#拒绝提交包含混合换行符的文件
+git config --global core.safecrlf true
+
+php
+-------
+$poststr = $GLOBALS["HTTP_RAW_POST_DATA"]; (?)
+
+linux
+-------
+/sbin/service crond start // 服务在系统启动的时候自动启动
