@@ -607,3 +607,55 @@ $poststr = $GLOBALS["HTTP_RAW_POST_DATA"]; (?)
 linux
 -------
 /sbin/service crond start // 服务在系统启动的时候自动启动
+
+1.23
+======
+linux
+-------
+$ find <指定目录> <指定条件> <指定动作>
+locate命令其实是"find -name"的另一种写法，但是要比后者快得多，原因在于它不搜索具体目录，而是搜索一个数据库（/var/lib/locatedb）// 可以在使用locate之前，先使用updatedb命令，手动更新数据库
+type命令其实不能算查找命令，它是用来区分某个命令到底是由shell自带的，还是由shell外部的独立二进制文件提供的
+/etc/init.d/    // 放服务程序
+
+mysql
+-------
+忘记密码
+    修改my.cnf 加 skip-grant-tables
+    重新启动mysqld
+    mysql> flush privileges ;
+
+git
+------
+查看文件改动
+    git log --pretty=oneline path/filename.suffix
+    git show 文件改动生成的hash值
+
+js
+-------
+what's this
+就是JS中，一个函数（function）在被直接调用的时候，其中的this指针永远指向window
+可以通过js中的call 和 apply 方法，强行去让方法被一个对象调用，例如：(obj.getName = obj.getName).call(obj) 
+JavaScript 支持函数式编程、闭包、基于原型的继承等高级功能 (?)
+在 Java 等面向对象的语言中，this 关键字的含义是明确且具体的，即指代当前对象。一般在编译期确定下来，或称为编译期绑定。而在 JavaScript 中，this 是动态绑定，或称为运行期绑定的，这就导致 JavaScript 中的 this 关键字有能力具备多重含义，带来灵活性的同时，也为初学者带来不少困惑
+由于其运行期绑定的特性，JavaScript 中的 this 含义要丰富得多，它可以是全局对象、当前对象或者任意对象，这完全取决于函数的调用方式
+JavaScript 中函数的调用有以下几种方式：作为对象方法调用，作为函数调用，作为构造函数调用，和使用 apply 或 call 调用
+var that = this; // 让内部函数变成一个闭包 并将值绑到that上实现调用函数时值指向对象而不是window
+作为构造函数调用
+    JavaScript 支持面向对象式编程，与主流的面向对象式编程语言不同，JavaScript并没有类（class）的概念，而是使用基于原型（prototype）的继承方式。相应的，JavaScript 中的构造函数也很特殊，如果不使用 new 调用，则和普通函数一样。作为又一项约定俗成的准则，构造函数以大写字母开头，提醒调用者使用正确的方式调用。如果调用正确，this 绑定到新创建的对象上
+在 JavaScript 中函数也是对象，对象则有方法，apply 和 call 就是函数对象的方法，这两个方法异常强大，他们允许切换函数执行的上下文环境（context），即 this 绑定的对象
+p1.moveTo.apply(p2, [10, 10]); // 将p1的方法应用到p2上
+
+1.24
+========
+php
+-------
+PECL 的全称是 The PHP Extension Community Library ，是一个开放的并通过 PEAR(PHP Extension and Application Repository，PHP 扩展和应用仓库)打包格式来打包安装的 PHP扩展库仓库
+
+try {
+    if (1) {
+        throw new Exception("v111111"); // 抛出异常 异常类
+    }
+} catch(Exception $e) { // $e为异常对象
+    var_dump($e->getMessage()); 
+    var_dump($e);
+}
