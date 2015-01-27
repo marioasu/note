@@ -221,7 +221,6 @@ ThinkPHP
     $User = new \Home\Model\UserModel();
     new \Home\Model\NewModel(['模型名'],['数据表前缀'],['数据库连接信息']); // 带参数实例化模型类
     数据表前缀传入空字符串表示取当前配置的表前缀，如果当前数据表没有前缀，则传入null即可
-    数据库调试模式 (?
 
 数据库配置
     'DB_TYPE'      =>  '',     // 数据库类型
@@ -669,3 +668,42 @@ user@unix(/path/to/socket)/dbname?charset=utf8
 user:password@tcp(localhost:5555)/dbname?charset=utf8
 user:password@/dbname
 user:password@tcp([de:ad:be:ef::ca:fe]:80)/dbname
+
+pconnect(persistent connect)
+-----------------------------
+mysql_pconnect() 函数打开一个到 MySQL 服务器的持久连接
+
+other
+------
+http/1.0里需要客户端自己在请求头加入Connection:Keep-alive方能实现持久连接模式
+tps 每秒事务处理量(TransactionPerSecond)
+
+1.27
+=======
+术语/字段约定
+----------
+price/special price/final price
+create_at/update_at
+deposite - 保证金
+order - 订单
+auction - 拍场
+vendor - 商家
+user - 用户
+manager - 管理员
+product - 商品
+落槌价+佣金=售卖价
+
+
+html5
+--------
+<html manifest="demo.appcache">
+demo.appcache:
+    CACHE MANIFEST
+    /theme.css
+    /logo.gif
+    /main.js
+
+ThinkPHP常量
+------------
+MODULE_PATH 当前模块路径
+CONTROLLER_NAME 当前控制器名
