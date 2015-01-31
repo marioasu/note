@@ -692,6 +692,8 @@ user - 用户
 manager - 管理员
 product - 商品
 落槌价+佣金=售卖价
+review - 审核
+approve - 审核通过 - un(反义)
 
 
 html5
@@ -707,3 +709,92 @@ ThinkPHP常量
 ------------
 MODULE_PATH 当前模块路径
 CONTROLLER_NAME 当前控制器名
+
+1.28
+=======
+mysql
+-------
+显式的select所有字段比select * 效率更高
+
+1.29
+========
+MongoDB
+--------
+BSON（Binary Serialized Document Format）是一种类json的一种二进制形式的存储格式，简称Binary JSON，它和JSON一样，支持内嵌的文档对象和数组对象，但是BSON有JSON没有的一些数据类型，如Date和BinData类型
+RDBMS即关系数据库管理系统(Relational Database Management System)
+MongoDB 中多个文档组成集合，多个集合组成数据库
+    按照命名空间将集合划分为子集合,让组织结构更好一些
+    虽然子集合没有任何特殊的地方，但是使用子集合组织数据结构清晰，这也是MongoDB 推荐的方法
+安装
+    mongod --dbpath C:\wamp\bin\mongodb\data
+    http://localhost:27017/
+
+other
+-------
+“x86-64”，有时会简称为“x64”，是64位微处理器架构及其相应指令集的一种，也是Intel x86架构的延伸产品。
+编程语言数据结构 映射 散列 字典 (?)
+
+php
+------
+Thread Safety   enabled // 表示php是ts版
+
+1.30
+=======
+MongoDB
+-------
+cursor
+    In the mongo shell, the primary method for the read operation is the db.collection.find() method. This method queries a collection and returns a cursor to the returning documents.
+set the noTimeout flag
+    var myCursor = db.collection.find().addOption(DBQuery.Option.noTimeout);
+create indexs
+db.collection.ensureIndex( { type: 1 } )
+
+    All write operations in MongoDB are atomic on the level of a single document.
+insert
+    db.collection.insert()
+    multi:true // 多条
+    upsert:true // 没数据则插入 (mysql 的replace)
+remove
+    db.collection.remove()
+find
+    $in $lt $or
+
+other
+-------
+LXC为Linux Container的简写
+
+1.31
+=======
+BLL - Business Logic Layer // 业务逻辑层
+USL - User Show Layer // 表示层
+DAL - Data Access Layer // 数据访问层
+SVG 指可伸缩矢量图形 (Scalable Vector Graphics)
+
+时间点数据 // 可变化的数据
+
+数据的关联关系
+--------------
+关联关系
+    通常我们所说的关联关系包括下面三种：
+    一对一关联 ：ONE_TO_ONE，包括HAS_ONE和BELONGS_TO
+    一对多关联 ：ONE_TO_MANY，包括HAS_MANY和BELONGS_TO
+    多对多关联 ：MANY_TO_MANY
+    关联关系必然有一个参照表
+
+php
+------
+php.ini
+    register_globals = On/Off // 是否注册为全局变量(默认关闭)
+    session.cookie_lifetime = 0 // 它告知浏览器不要持久化存储 cookie 数据。 也即，关闭浏览器的时候，会话 ID cookie 会被立即删除
+session_start(); // 启动新会话或者重用现有会话
+session_regenerate_id(); // 生成新的会话id(内容不变)
+session_unset(); // Free all session variables
+session_write_close(); // Write session data and end session // 之后的session操作将不起作用
+session_id(); // 获取/设置当前会话id
+
+mysql
+--------
+mysql 中varchar内容开头用1到2个字节表示实际长度(所以最大长度65535-3(是否为空+长度))
+5.0版本以上varchar() 括号中的内容表示字符数
+非空CHAR的最大总长度是255【字节】
+
