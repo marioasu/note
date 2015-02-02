@@ -12,3 +12,12 @@ other
 js
 -------
 <a href="#" onclick="self.location=document.referrer;">back</a> // 返回导航到当前网页的超链接所在网页的URL
+
+php
+-------
+heredoc
+<<<EOT
+xxx
+EOT;
+结尾定界符必须顶格独占一行,分号结束
+定界符习惯用EOT EOF // end of tape,end of file
