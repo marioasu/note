@@ -74,3 +74,11 @@ ThinkPHP多层MVC
 模型(Model)层 // Model/Logic/Service 数据/逻辑/服务
 视图(View)层 // 通过目录区分主题、移动端和web端
 控制器(Controller)层 // Controller/Event 访问控制器/事件控制器
+
+2.9
+========
+git
+-----
+git config --global core.autocrlf false // 禁止自动转换换行符
+
+Fielding将他对互联网软件的架构原则，定名为REST，即Representational State Transfer的缩写。我对这个词组的翻译是"表现层状态转化"
