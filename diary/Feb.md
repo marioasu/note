@@ -21,3 +21,9 @@ xxx
 EOT;
 结尾定界符必须顶格独占一行,分号结束
 定界符习惯用EOT EOF // end of tape,end of file
+
+2.7
+======
+AngularJS
+-------
+所有$scope都遵循原型继承，这意味着它们都能访问父$scope们,
