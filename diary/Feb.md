@@ -134,3 +134,28 @@ git
 ------
 git commit -am "xxx" // git add 和 git commit -m "xxx" 合为一步(没添加新文件时适用)
 git commit -h // 查看提交帮助
+
+2.26
+======
+sublime text2
+-------------
+Ctrl + B // markdown 生成html
+Ctrl + R // markdown 快捷键快速跳转文件的部分
+
+2.28
+======
+CGI // Common Gateway Interface, 一种基于浏览器的输入、在Web服务器上运行的程序方法
+CGI脚本输出头 // 有三个类型的头部: Content-type, Location, 和Status. Content-type 是最普遍的。
+URL编码遵循下列规则:
+每对name/value由&符分开.
+每对来自表单的name/value由=符分开. 如果用户没有输入值给这个name,那么这个name还是出现，只是无值(象这样 "name=").
+任何特殊的字符(就是那些不是简单的七位ASCII，如汉字) 将以百分符%用十六进制编码. 当然也包括象 =, &, 和 % 这些特殊的字符.
+在输入区中的空格将以加号+显示.
+　　因为表单输入是用这个URL编码传递给你的脚本的，在你用这些参数之前必须解码，因为解码是个很普遍的工作，可以有很多工具做这个工作 . 你没有必要自己写这个解码程序.
+
+Angularjs
+	将script标签放在底部缩短应用加载的时间，因为这样HTML的加载不会被angular.js脚本的加载阻塞
+	控制器是由Javascript写的。Javascript是命令式的，命令式的语言适合用来编写应用的行为。控制器不应该包含任何关于渲染代码（DOM引用或者片段）。
+	视图模板是用HTML写的。HTML是声明是的，声明式的语言适合用来编写UI。视图不应该包含任何行为。
+
+领域特定语言（domain-specific languages，简称DSL）
