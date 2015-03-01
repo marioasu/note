@@ -3,7 +3,7 @@ shell commands
 
 gawk
 --------------
-- gawk [options] '/pattern/ {action}'
+- gawk [options] '/pattern/ {action}' filename
 
 shell脱离终端在后台运行
 -----------------------
