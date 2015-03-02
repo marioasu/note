@@ -14,3 +14,11 @@ IndexDB // 键值对数据库
 IOS对离线Web App支持最好
 	可以在主屏幕上添加图标
 	可以全屏浏览
+
+bootstrap
+----------
+水平表单
+水平表单与其他表单不仅标记的数量上不同，而且表单的呈现形式也不同。如需创建一个水平布局的表单，请按下面的几个步骤进行：
+	向父 <form> 元素添加 class .form-horizontal。
+	把标签和控件放在一个带有 class .form-group 的 <div> 中。
+	向标签添加 class .control-label。
