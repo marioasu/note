@@ -68,6 +68,12 @@ mysql
 ------
 desc TableName // 查看表结构
 
+2.7
+======
+AngularJS
+-------
+所有$scope都遵循原型继承，这意味着它们都能访问父$scope们
+
 2.8
 ======
 ThinkPHP多层MVC
