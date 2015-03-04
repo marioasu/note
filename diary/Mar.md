@@ -22,3 +22,8 @@ bootstrap
 	向父 <form> 元素添加 class .form-horizontal。
 	把标签和控件放在一个带有 class .form-group 的 <div> 中。
 	向标签添加 class .control-label。
+	安装完成后请修改 tnsnames.ora 文件中用中文标识的三处.
+
+3.4
+==========
+对称加密 // 采用单钥密码系统的加密方法，同一个密钥可以同时用作信息的加密和解密，这种加密方法称为对称加密，也称为单密钥加密。
