@@ -23,3 +23,7 @@ nohup command & 让进程在后台运行 即使终端推出也不结束
 sed
 --------------
 - sed [options] 'command' flie(s)
+
+df
+---------
+df -h 查看容量
