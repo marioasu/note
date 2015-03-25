@@ -35,3 +35,57 @@ bootstrap
 3.6
 ===========
 wap网站，即WAP(Wireless Application Protocol)是无线应用协议的缩写，一种实现移动电话与互联网结合的应用协议标准。
+
+3.12
+==========
+js
+----------
+原型链中封装trim方法
+String.prototype.trim = function() {
+	return this.replace(/(^\s*)|(\s*$)/g, ''),; // 去除字符串前后空格
+}
+
+3.13
+=========
+book
+---------
+JavaScript Design Patterns
+Design patterns are reusable solutions to commonly occurring problems in software design. 
+
+3.15
+=========
+lrzsz 上传和下载文件
+
+python easy setup
+------------------
+https://bootstrap.pypa.io/ez_setup.py
+
+3.16
+=========
+MySQL-python 安装
+------------------
+vim site.cfg 把 mysql_config = /usr/local/mysql/bin/mysql_config 这一行前的#去掉，并且把mysql_config的路径设置正确
+python setup.py build
+sudo python setup.py install
+	yum install gcc python-devel // 如果出现错误提示：command 'gcc' failed with exit status 1
+测试
+    运行： python
+    import MySQLdb
+    如果没有报错，说明安装好了
+    ln -s /usr/local/mysql/lib/libmysqlclient.so.18 /usr/lib64/libmysqlclient.so.18 // ImportError: libmysqlclient.so.18: cannot open shared object file: No such file or directory
+
+3.17
+=======
+ - windows上安装MongoDB3.0
+ - 安装GoSublime/SidebarEnhancements/Go Build  // Ctrl + b 打开控制台
+
+3.19
+========
+签名分析
+	防止请求被篡改(可以被抓取,但无法被篡改)
+	明文传秘钥容易被抓包获取
+	服务器对服务器请求常用
+
+3.24
+==========
+数据库模式定义语言DDL(Data Definition Language)
