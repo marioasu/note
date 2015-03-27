@@ -89,3 +89,8 @@ sudo python setup.py install
 3.24
 ==========
 数据库模式定义语言DDL(Data Definition Language)
+
+3.26
+============
+微信Openid
+　　用户在公众号内的身份标识，不同公众号拥有不同的openid。商户后台系统通过登录授权、支付通知、查询订单等API可获取到用户的openid。主要用途是判断同一个用户，对用户发送客服消息、模版消息等。
