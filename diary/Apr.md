@@ -59,3 +59,25 @@ isPrototypeOf() // 判断，某个proptotype对象和某个实例之间的关系
 hasOwnProperty() // 每个实例对象都有一个hasOwnProperty()方法，用来判断某一个属性到底是本地属性，还是继承自prototype对象的属性。
 in运算符 // in运算符可以用来判断，某个实例是否含有某个属性，不管是不是本地属性。
 
+4.8 - 4.9
+==========
+html5
+----------
+- server-sent event
+	HTTP是一个无状态的面向连接的协议，无状态不代表HTTP不能保持TCP连接，更不能代表HTTP使用的是UDP协议（无连接）
+	source = new EventSource("xx.php")
+	xx.php
+		header('Content-Type: text/event-stream'); // Content-Type 报头
+		header('Cache-Control: no-cache');
+		echo 'data: '.$_SERVER['REQUEST_TIME']."\n\n";
+		flush();
+	source.onmessage = function(event) {
+		console.log(event.data);
+	}
+
+js
+----------
+基于类的语言	类从另一个类继承
+js基于原型		类直接从其他对象继承
+js通过构造器函数产生对象
+
