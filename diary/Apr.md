@@ -157,3 +157,9 @@ server {
 		}
 }
 
+4.15
+==========
+.bashrc 保存个人的一些个性化设置  /etc/.bashrc 或~/.bashrc
+.bash_profile 在用户登录时执行
+
+
