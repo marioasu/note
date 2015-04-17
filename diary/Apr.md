@@ -151,3 +151,15 @@ server {
 		}
 }
 
+4.17
+==========
+浏览器变记事本
+--------------
+地址栏输入	data:text/html, <html contenteditable>
+或者控制台输入 document.body.contentEditable='true';
+
+禁止别人以iframe加载你的页面
+----------------------------
+if (window.location != window.parent.location) window.parent.location = window.location;
+
+console.table(json_data)
