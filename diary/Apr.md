@@ -114,6 +114,12 @@ $	匹配字符串结束的位置
 - 修正模式
 贪婪匹配	匹配结果存在歧义取其长 默认
 懒惰匹配	匹配结果存在歧义取其短 /xx/U
+- 模式修正符
+U - 懒惰匹配
+i - 忽略英文字母大小写
+x - 忽略空白符
+s - 让元字符'.'匹配包括换行符在内所有字符
+e - 
 
 4.13
 =========
@@ -163,3 +169,11 @@ server {
 if (window.location != window.parent.location) window.parent.location = window.location;
 
 console.table(json_data)
+
+4.15
+==========
+.bashrc 保存个人的一些个性化设置  /etc/.bashrc 或~/.bashrc
+.bash_profile 在用户登录时执行
+
+
+
