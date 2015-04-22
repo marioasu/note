@@ -175,5 +175,11 @@ console.table(json_data)
 .bashrc 保存个人的一些个性化设置  /etc/.bashrc 或~/.bashrc
 .bash_profile 在用户登录时执行
 
+4.18
+=========
+char_length() // mysql字符串长度
 
-
+4.22
+=========
+getcwd() 方法获取代码所在路径(如过有引用,则为引用后位置)
+dirname(__FILE__) 代码引用前所在位置
