@@ -454,6 +454,7 @@ vpn
 http://item.taobao.com/item.htm?spm=a1z09.2.9.10.UKi6Rt&id=12406169770&_u=hi38rc23a5c
 伺服器名稱： nance.tenacy.net
 激活地址：http://tenacy.swe.net/activate 付费季卡：【用名户：040533633097 密码：683549】
+激活地址：http://tenacy.swe.net/activate 付费季卡：【用名户：040562370748 密码：609142】
 
 HTTP
 --------
