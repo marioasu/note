@@ -20,3 +20,22 @@ function字面量的构造器是Function...
 字面量的构造器是 function Function() { [native code] }
 由于Function是顶层的构造器,在Function的原型上加的方法对所有对象都有效
 	在 this.prototype.__proto__ 里面
+
+5.26
+========
+php
+--------
+命令行模式
+	php -r 'xxx' // 直接运行(run)php代码
+	php -a // 进入交互(interactive) 模式
+ini_set('html_errors', false); // 设置不加html标签的错误输出
+
+linux
+---------
+curl 提交数据
+curl -d xxx...  // 'CONTENT_TYPE' => string 'application/x-www-form-urlencoded' 
+curl -F(--form) xxx... // 'CONTENT_TYPE' => string 'multipart/form-data; boundary=----------------------------edcdabe557d8'
+服务端 接收到post请求
+
+5.27
+动态语言，是指程序在运行时可以改变其结构：新的函数可以被引进，已有的函数可以被删除等在结构上的变化。// eg. js
