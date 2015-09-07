@@ -23,7 +23,7 @@ $obj2 = Sigleton::getInstance();
 var_dump($obj1 === $obj2);
 
 /* 可以创建多个实例的单件模式 */
-class User{ // 为每个user创建一个实例
+class User { // 为每个user创建一个实例
 	static private $_instance = array();
 	private $_uid;
 

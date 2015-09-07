@@ -730,6 +730,10 @@ MongoDB 中多个文档组成集合，多个集合组成数据库
     mongod --dbpath C:\wamp\bin\mongodb\data
     http://localhost:27017/
 
+    或者 mongod --config /path/to/your/mongodb.config
+    mongodb.config 中添加 dbpath=PATH_TO_WHERE_YOU_WANT_TO_STORE_YOUR_DATABASE_FILES
+
+
 other
 -------
 “x86-64”，有时会简称为“x64”，是64位微处理器架构及其相应指令集的一种，也是Intel x86架构的延伸产品。
