@@ -27,3 +27,32 @@ sed
 df
 ---------
 df -h 查看容量
+
+gzip gunzip
+-----------
+压缩/解压文件
+gzip -c xxx > xxx.gz
+gunzip -c xxx.gz > xxx
+
+-c --stdout
+
+tar
+---------
+tar -vxf xxx.tar
+tar -zvxf xxx.tar.gz
+tar -jvxf xxx.tar.bz2
+
+vim
+--------
+ctrl + f 向前翻页
+ctrl + b 向后翻页
+
+apache
+------------
+查看已加载的apache模块
+/usr/local/apache/bin/httpd -M
+
+
+rpm
+----------
+rpm -ql xxx 查看xxx的安装位置(通过yum安装)
