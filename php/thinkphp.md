@@ -47,7 +47,7 @@ AR 数据存放在 protected data 数组里面
 			$where['field'] = [[exp1], [exp2], [exp3]... 'and/or']
 		
 		统计
-			$ar->count('field'/null)
+			$ar->count('field'/null)  // count(DISTINCT(uid))
 			$ar->max('field');
 			$ar->min('field');
 			$ar->avg('field');
