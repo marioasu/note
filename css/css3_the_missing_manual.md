@@ -169,3 +169,35 @@ overflow: visible/scroll/auto/hidden
 
 negative margin pulls the element out toward the direction of the margin
 
+Bottoming Out
+-------
+.xx {
+    background-position: - bottom;    
+}
+html {
+    height: 100%;
+}
+
+backgroud-attachment: fixed;
+backgroud-origin: border-box/padding-box/content-box;
+backgroud-clip: border-box/padding-box/content-box;
+background-size: 100px 200px;
+                 100px auto;
+                 100% 100%;
+                 contain;
+                 cover;
+
+Multiple Background Images
+-------
+background: url(scrollTop.jpg) center top no-repeat, // top layer
+            url(scrollBottom.jpg) center bottom no-repeat, // second layer
+            url(scrollMiddle.jpg) center top repeat-y; // bottom layer
+
+Gradient Backgrounds
+-------
+background-image: linear-gradient(180deg, white, black)
+
+Link States
+-------
+:link,:visited,:hover,:active // the order matters
+:focus
