@@ -209,3 +209,29 @@ transform:
     scale(x)/scale(x,y)
     scaleX(x)
     scaleY(x)
+    translate(x,y)
+    translateX(x)
+    translateY(x)
+    skew(x,y)
+    skewX(x)
+    skewY(x)
+transform-origin
+transition-timing-function
+transition-delay
+
+at rule
+-------
+@keyframes fadeIn {
+    from {
+    }
+    x% {
+    }
+    to {
+    }
+}
+animation-name
+animation-duration
+animation-timing-function
+animation-iteration-count
+animation-fill-mode: forwards;
+animation-play-state: paused;
