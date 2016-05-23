@@ -121,3 +121,17 @@ text-indent:5em/25px;
 
 Styling Lists
 -------
+list-style-image: url()
+
+Font Definition
+-------
+@font-face {
+    font-family: 'xxx';
+}
+html {
+    font-family: xxx;
+    font-size: 62.5%; <!-- 16 * 62.5% = 10 -->
+}
+
+
+
