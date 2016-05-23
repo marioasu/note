@@ -18,7 +18,7 @@ bg 让程序在后台运行（作为job进程）
 fg 切换到前台
 ctrl + c 结束正在运行的进程
 jobs 查看后台进程
-nohup command & 让进程在后台运行 即使终端推出也不结束
+nohup command & 让进程在后台运行 即使终端退出也不结束
 ```
 sed
 --------------
@@ -56,3 +56,23 @@ apache
 rpm
 ----------
 rpm -ql xxx 查看xxx的安装位置(通过yum安装)
+
+sed
+-------
+sed [OPTION] {script} [input-file]...
+OPTION
+    -n, --quiet, --silent 只显示匹配行
+    -i, --in-place 直接编辑文件
+script
+    /匹配行/ 操作
+        /匹配行/
+            1
+            1,n
+            2,$
+            /pattern/
+        操作
+            p 显示某行(一般配合-n使用) [/pattern/]p
+            a 新增一行或多行
+            d 删除某行
+            c 代替一行或多行
+            s 替换 -- s/要替换的字符串/新的字符串/g

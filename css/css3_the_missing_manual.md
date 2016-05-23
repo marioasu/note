@@ -106,6 +106,9 @@ Using Web Fonts
 Adding Color To Text
 -------
 color:
+
+Formatting Words And Letters
+-------
 font-size:
 font-style:
 font-weight:
@@ -122,6 +125,9 @@ text-indent:5em/25px;
 Styling Lists
 -------
 list-style-image: url()
+list-style-type:none;
+list-style-position:outside/inside/inherit;
+list-style-image:url(xxx);
 
 Font Definition
 -------
@@ -133,5 +139,111 @@ html {
     font-size: 62.5%; <!-- 16 * 62.5% = 10 -->
 }
 
+Margins,Paddings And Borders
+=======
+margin-right: 20px;
+padding-top: 3em;
+margin-left/right/top/buttom: 10%; // when use percentages, spaces are calculated base on the width of the containing element.
 
+Colliding Margins
+-------
+when margin collides, the larger one will be use.
+
+Collapsing Margins
+-------
+when inner box's margin smaller than outer's, two margins actually become the outer one.
+Horizontal (left and right) margins and margins between floating elements don’t collapse in this way.
+Absolutely and relatively positioned elements don’t collapse either.
+
+you can’t increase the height of the inline element with top or bottom padding or margins. -- except img tag
+If you want top and bottom margins and padding to work for an inline element, you can use the display:inline-block instruction.
+
+.divide-line {
+    margin: 40px 0 20px;
+    border-top: 1px solid #eaeaea;
+}
+
+Creating Rounded Corners
+-------
+border-radius:20px;
+border-radius:40px/20px;
+
+box-shadow: "horizontal offset" "vertical offset" "shadow radius" "shadow color";
+
+rem -- font size of the root element
+
+Determining Height And Width
+-------
+box-sizing: content-box/padding-box/border-box
+
+overflow: visible/scroll/auto/hidden
+
+negative margin pulls the element out toward the direction of the margin
+
+Bottoming Out
+-------
+.xx {
+    background-position: - bottom;    
+}
+html {
+    height: 100%;
+}
+
+backgroud-attachment: fixed;
+backgroud-origin: border-box/padding-box/content-box;
+backgroud-clip: border-box/padding-box/content-box;
+background-size: 100px 200px;
+                 100px auto;
+                 100% 100%;
+                 contain;
+                 cover;
+
+Multiple Background Images
+-------
+background: url(scrollTop.jpg) center top no-repeat, // top layer
+            url(scrollBottom.jpg) center bottom no-repeat, // second layer
+            url(scrollMiddle.jpg) center top repeat-y; // bottom layer
+
+Gradient Backgrounds
+-------
+background-image: linear-gradient(180deg, white, black)
+
+Link States
+-------
+:link,:visited,:hover,:active // the order matters
+:focus
+
+CSS Transforms,Transitions,and Animations
+=======
+transform:
+    rotate(xdeg)
+    scale(x)/scale(x,y)
+    scaleX(x)
+    scaleY(x)
+    translate(x,y)
+    translateX(x)
+    translateY(x)
+    skew(x,y)
+    skewX(x)
+    skewY(x)
+transform-origin
+transition-timing-function
+transition-delay
+
+at rule
+-------
+@keyframes fadeIn {
+    from {
+    }
+    x% {
+    }
+    to {
+    }
+}
+animation-name
+animation-duration
+animation-timing-function
+animation-iteration-count
+animation-fill-mode: forwards;
+animation-play-state: paused;
 
