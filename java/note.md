@@ -269,6 +269,7 @@ Object类
 所有类的父类
 方法
 	toString
+	equals
 
 内部类
 =======
@@ -288,3 +289,99 @@ func(new Class().objFunc());
 static方法内只能访问到static成员变量
 
 java中的对象和数组的赋值和传参为引用传递
+
+this
+-------
+this() 调用本类中无参构造方法
+
+static
+=======
+static 声明的属性所有对象共享 -- 类变量
+static 声明的方法只能使用static属性 -- 类方法
+static属性和方法可由类名直接访问
+
+main 方法
+=======
+public 供虚拟机调用
+static 虚拟机执行时不必创建对象
+void 无返回值
+String[] args 保存类执行时需要的参数
+
+静态代码块
+=======
+类被载入时执行 且只执行一次
+常用来进行类属性的初始化
+
+final
+-------
+标记的类不能被继承 -- 终态类
+标记的方法不能被覆写 -- 终态方法
+标记常量
+
+instance of 类／接口
+-------
+实例是否属于一个类或实现了接口
+
+java 常用类库
+=======
+String 和 StringBuffer 类 -- 处理字符串 在java.lang包中
+-------
+StringBuffer类用于类容可改变的字符串 再使用StringBuffer.toString()方法将其转换成String类
+连接操作符 通过 StringBuffer类和它的append方法实现的
+
+8种基本数据类型的包装类
+-------
+int - Integer
+char - Character
+float - Float
+double - Double
+byte - Byte
+long - Long
+short - Short
+boolean - Boolean
+
+Integer
+-------
+.parseInt(str)
+
+System类
+-------
+含系统相关的重要方法和变量
+exit(int status)
+CurrentTimeMillis() -- 时间戳 long类型
+getProperties() -- 获取当前虚拟机的环境属性 return Properties类型的对象
+	Properties是HashTable的子类
+setProperties()
+
+Runtime类
+-------
+Runtime类封装了Java命令本身运行的进程
+Runtime run = Runtime.getRuntime()
+run.exec(xxx)
+
+Exception e
+-------
+e.printStackTrace()
+
+Date 与 Calendar、DateFormat类
+-------
+Date类开始设计的时候没考虑国际化
+Calendar.getInstance()返回Calendar类型(它的字类GregorianCalendar)的对象实例
+java.text.SimpleDateFormat类是JDK目前提供的一个DateFormat子类 可用于转换Date
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
