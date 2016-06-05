@@ -369,6 +369,31 @@ Date类开始设计的时候没考虑国际化
 Calendar.getInstance()返回Calendar类型(它的字类GregorianCalendar)的对象实例
 java.text.SimpleDateFormat类是JDK目前提供的一个DateFormat子类 可用于转换Date
 
+Math 与 Random类
+-------
+
+pakage
+------
+pakage xxx
+声明后同一文件内的接口或类都会被纳入相同的package中
+import packagename.classname 导入
+
+访问控制符
+-------
+private 只能在类内部使用
+default(不使用控制符) 能在同一包内的类中使用
+protected 可在同一包内和不同包的子类中使用
+public 可以在所有类中使用
+
+jar
+-------
+Java Archive File
+
+异常处理
+-------
+throw 生成异常对象并交给运行时系统处理的过程
+catch 运行时系统在方法的调用栈中查找 回溯找到包含相应异常处理方法的过程
+
 
 
 
