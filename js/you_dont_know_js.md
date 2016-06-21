@@ -69,6 +69,7 @@ prototype
 -------
 var bar = Object.create(foo) // bar is prototype-linked to foo
 
+
 Scope & Closures
 =======
 
@@ -87,3 +88,52 @@ eval() do not actually modify the enclosing scope
 Lexical Scope 词法作用域
 -------
 
+let
+-------
+implicitly hijacks any block's scope for its variable declaration
+variable will be declared at each iteration in for-loop
+
+const
+-------
+block scope and cant be change
+
+var a = 2;
+-------
+var a; during the compilation phase
+a = 2; during the execution phase
+
+hoisting
+-------
+function declarations -- function expressions will not hoist
+variables
+
+closure
+-------
+inner function has a lexical scope closure over outer function, which keeps that scope alive for inner function to reference at any later time
+inner function has a reference to outer scope, that reference is called closure
+inner function closer over outer scope by accessing outer variable
+inner function has a scope closure over the scope of outer function
+so we can find variable via closure
+inner function -- closured function
+Closure is when a function can remember and access its lexical scope even when it's invoked outside its lexical scope
+
+ES6 Module
+-------
+export exports an identifier to the public API for the current module
+import func from file // import partial function
+module file from file // import entire module
+
+lexical scope & dynamic scope
+-------
+To be clear, JavaScript does not, in fact, have dynamic scope. It has lexical scope. Plain and simple. But the this mechanism is kind of like dynamic scope.
+
+arrow function
+-------
+var foo = a => {
+  console.log(a);
+};
+inherits the this from outer scope -- like function expression.bind(this)
+
+
+this & Object Prototypes
+=======
