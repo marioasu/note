@@ -17,6 +17,7 @@ object wrapper
 String
 Number
 Boolean
+Object
 
 explicit/implicit coercion
 -------
@@ -84,6 +85,7 @@ Code-Generation 代码生成
 -------
 disallows the automatic/implict global variable creation
 eval() do not actually modify the enclosing scope
+in function, set this to undefined
 
 Lexical Scope 词法作用域
 -------
@@ -129,11 +131,53 @@ To be clear, JavaScript does not, in fact, have dynamic scope. It has lexical sc
 
 arrow function
 -------
-var foo = a => {
+var foo = (a) => { // fat arrow operator
   console.log(a);
 };
 inherits the this from outer scope -- like function expression.bind(this)
+when be called, obey lexical scope
 
 
 this & Object Prototypes
 =======
+
+this
+-------
+is not an author-time binding but a runtime binding
+when a function is invoked, an activation record, otherwise known as an execution context, is created. -- call-site
+
+new
+-------
+call a function with a new in front of it construct a new object
+
+Objects
+-------
+var obj = {} // declarative (literal) form
+var obj = new Object() // constructed form
+
+Build-in Objects // actually just built-in functions
+-------
+String
+Number
+Boolean
+Object
+Function
+Array
+Date // Date values can only be created with their constructed object form
+RegExp
+Error
+null and undefined have no object wrapper form, only their primitive values
+In objects, property names are always strings -- String()
+
+Arrays
+-------
+adding named properties does not change the reported length of the array
+but if the property name looks like a number, it will end up instead as a numeric index
+array.length is much like the capacity of the array
+
+Duplicating Objects
+-------
+var newObj = JSON.parse( JSON.stringify( someObj ) ); // if Object is JSON safe
+var newObj = Object.assign( {}, myObject ); // ES6 shallow copy
+Object.getOwnPropertyDescriptor( myObject, property);
+Object.defineProperty( myObject, property, {...});

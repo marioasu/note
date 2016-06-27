@@ -16,3 +16,14 @@ undefined
 -------
 var === void 0 // typeof var == 'undefined'
 
+currying with `bind(..)`
+-------
+function foo(a,b) {
+    console.log( "a:" + a + ", b:" + b );
+}
+var bar = foo.bind( null, 2 );
+bar( 3 ); // a:2, b:3
+
+禁止页面滚动
+-------
+document.body.style.overflow='hidden';
