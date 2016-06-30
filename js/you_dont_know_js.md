@@ -69,6 +69,7 @@ new foo() sets this to a brand new empty object
 prototype
 -------
 var bar = Object.create(foo) // bar is prototype-linked to foo
+Object.setPrototypeOf(bar, foo) // ES6
 
 
 Scope & Closures
@@ -181,3 +182,69 @@ var newObj = JSON.parse( JSON.stringify( someObj ) ); // if Object is JSON safe
 var newObj = Object.assign( {}, myObject ); // ES6 shallow copy
 Object.getOwnPropertyDescriptor( myObject, property);
 Object.defineProperty( myObject, property, {...});
+Object.preventExtensions( myObject ); // prevent an object from having new properties
+Object.seal(..) // preventExtensions and set configurable to false
+Object.freeze(..) // seal and set writable to false
+
+[[Get]]
+-------
+if [[Get]] not find, it returns the value undefined
+reference a value that cant be resolved with the application lexical scope look-up, a ReferenceError is thrown
+
+[[Put]]
+-------
+
+("a" in myObject); // property name -- check [[Prototype]]
+myObject.hasOwnProperty("a");
+Object.prototype.hasOwnProperty.call(myObject,"a");
+Object.getOwnPropertyNames(..)
+
+Enumeration
+-------
+myObject.propertyIsEnumerable("a");
+It's a good idea to use for..in loops only on objects, and traditional for loops with numeric index iteration for the values stored in arrays. // for in will include enumerable properties
+
+[[Prototype]]
+-------
+var myObject = Object.create( anotherObject ); // [[Prototype]] linkage
+```
+function Foo() {
+    // ...
+}
+Foo.prototype.constructor === Foo; // true
+var a = new Foo(); // constructor calls
+Object.getPrototypeOf( a ) === Foo.prototype; // true
+a.constructor === Foo;
+```
+
+Behavior Delegation
+-------
+all about objects being linked to other objects
+
+Towards Delegation-Oriented Design
+-------
+
+type introspection
+-------
+Foo.isPrototypeOf( Bar );
+Object.getPrototypeOf( Bar ) === Foo;
+
+Types & Grammar
+=======
+Specifically, a function is referred to as a "callable object" -- an object that has an internal [[Call]] property that allows it to be invoked.
+
+Strings
+------
+like Arrays
+    str.lenght
+    str.indexOf()
+    str.concat()
+str.charAt(x) -- str[x]
+
+we can "borrow" non-mutation array methods against our string
+-------
+    arr.join()
+    arr.map()
+    Array.prototype.join.call( str, "-" );
+arr.reverse() -- cant borrow(strings are immutable!)
+str.split("").reverse().join("") instead
