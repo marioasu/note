@@ -46,6 +46,17 @@ if both values are strings, the comparison is made alphabetically like a diction
 if one or both is not a string, then both value are coerced to be numbers
 string is being coerced to the "invalid number value" - NaN
 
+invalid number -- I tried to perform a mathematic operation but failed, so here's the failed number result instead
+-------
+var a = 2 / "foo";      // NaN
+typeof a === "number";  // true
+isNaN(a) // true
+isNaN("foo") // true --!
+ES6
+    Number.isNaN(a) // true
+    Number.isNaN("foo") // false
+NaN !== NaN // true -- NaN is not reflexive
+
 scopes
 -------
 ### var function scope
@@ -248,3 +259,52 @@ we can "borrow" non-mutation array methods against our string
     Array.prototype.join.call( str, "-" );
 arr.reverse() -- cant borrow(strings are immutable!)
 str.split("").reverse().join("") instead
+
+Numbers
+-------
+num.toExponential();
+num.toFixed(n) -> string;
+num.toPrecision(n) -> string;
+
+. will first be interpreted as part of the number literal - is a valid numeric character
+-------
+42.toFixed( 3 );    // SyntaxError
+(42).toFixed( 3 );  // "42.000"
+0.42.toFixed( 3 );  // "0.420"
+42..toFixed( 3 );   // "42.000"
+42 .toFixed(3); // "42.000"
+
+number literals
+-------
+1.1E6 // exponential
+0xf3 // hexadecimal
+0o363 // octal
+0b11110011 // binary
+
+machine epsilon
+-------
+if (!Number.EPSILON) { // before ES6
+    Number.EPSILON = Math.pow(2,-52);
+}
+function numbersCloseEnoughToEqual(n1,n2) {
+    return Math.abs( n1 - n2 ) < Number.EPSILON;
+}
+
+Number.MAX_VALUE
+Number.MIN_VALUE
+Number.MAX_SAFE_INTEGER // 2^53 - 1
+Number.MIN_SAFE_INTEGER
+Number.isInteger(n) -- ES6 // 42.00 is integer in javascript
+Number.isSafeInteger(n) -- ES6
+
+32-bit signed integer
+-------
+num | 0 // force a number to a 32-bit signed integer value --  the | bitwise operator only works for 32-bit integer values
+
+Infinities
+-------
+var a = 1 / 0;  // Infinity
+var b = -1 / 0; // -Infinity
+Number.POSITIVE_INFINITY
+Number.NEGATIVE_INFINITY
+Infinity / Infinity // NaN
