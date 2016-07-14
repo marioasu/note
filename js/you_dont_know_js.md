@@ -308,3 +308,14 @@ var b = -1 / 0; // -Infinity
 Number.POSITIVE_INFINITY
 Number.NEGATIVE_INFINITY
 Infinity / Infinity // NaN
+
+void 0 -> undefined
+Object.is( a, x );
+
+Compound values always create a copy of the reference on assignment or passing
+Since references point to the values themselves and not to the variables, you cannot use one reference to change where another reference is pointed
+a.slice()
+
+Unboxing
+-------
+obj.valueOf()
