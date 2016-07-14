@@ -319,3 +319,7 @@ a.slice()
 Unboxing
 -------
 obj.valueOf()
+
+Date(..) and Error(..)
+-------
+has no literal form for either
