@@ -316,10 +316,25 @@ Compound values always create a copy of the reference on assignment or passing
 Since references point to the values themselves and not to the variables, you cannot use one reference to change where another reference is pointed
 a.slice()
 
-Unboxing
+Unboxing (object wrappers)
 -------
 obj.valueOf()
 
 Date(..) and Error(..)
 -------
 has no literal form for either
+(new Date()).getTime()
+Date.now()
+
+toJSON() -> JSON-safe
+-------
+JSON stringification has the special behavior that if an object value has a toJSON() method defined, this method will be called first to get a value to use for serialization
+
+The -(x+1) pseudo-algorithm for ~ would imply that ~-1 is -0, but actually it produces 0 because the underlying operation is actually bitwise, not mathematic
+if (~a.indexOf(..))
+
+"== allows coercion in the equality comparison and === disallows coercion."
+
+Async & Performance
+=======
+
