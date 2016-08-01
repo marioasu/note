@@ -240,6 +240,31 @@ type introspection
 Foo.isPrototypeOf( Bar );
 Object.getPrototypeOf( Bar ) === Foo;
 
+OLOO (objects-linked-to-other-objects)
+-------
+var Foo = {
+    init: function(who) {
+        this.me = who;
+    },
+    identify: function() {
+        return "I am " + this.me;
+    }
+};
+
+var Bar = Object.create( Foo );
+
+Bar.speak = function() {
+    alert( "Hello, " + this.identify() + "." );
+};
+
+var b1 = Object.create( Bar );
+b1.init( "b1" );
+var b2 = Object.create( Bar );
+b2.init( "b2" );
+
+b1.speak();
+b2.speak();
+
 Types & Grammar
 =======
 Specifically, a function is referred to as a "callable object" -- an object that has an internal [[Call]] property that allows it to be invoked.
