@@ -17,3 +17,4 @@ cat ~/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod ~ 755
 chmod 700 ~/.ssh
 chmod 644/600 ~/.ssh/authorized_keys
+
