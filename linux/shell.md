@@ -83,3 +83,15 @@ script
 
 seq
 -------
+
+grep
+-------
+-e (默认,显式指定多个表达式或-打头的表达式) match_pattern
+-E --extended-regexp
+-v --invert-match
+-r --recursive
+
+date
+-------
+-d 指定 时间/@时间戳
++%s seconds since the epoch
