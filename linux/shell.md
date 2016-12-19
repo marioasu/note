@@ -83,3 +83,16 @@ script
 
 seq
 -------
+
+imageMagick
+-------
+convert
+-------
+convert +profile '*' -auto-orient input.jpg output.jpg // delete exif
+mogrify -strip input.jpg // strip exif info
+identify -verbose input.jpg // describe details include exif
+
+unzip
+-------
+-d dirname
+-O charset
