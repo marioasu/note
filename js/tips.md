@@ -8,6 +8,12 @@ String.method('trim', function() {
 	return this.replace(/^\s+|\s+$/g, '');
 });
 
+mod
+-------
+Number.prototype.mod = function(n) {
+    return ((this%n)+n)%n;
+};
+
 原生js获取dom属性
 -------
 document.querySelector('meta[name="description"]').getAttribute('content');

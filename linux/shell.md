@@ -110,3 +110,15 @@ date -d @1483515634
 dd
 ------
 sudo dd if=android_x86.iso of=/dev/sdc bs=1M
+
+rsync
+-t - sync time
+-I - don't skip files that match size and time
+-z - compress
+-r - recursive
+-l - links
+-p - permissions
+-go - group and owner
+-D - devices
+-a = -rlptgoD
+-v - verbose
