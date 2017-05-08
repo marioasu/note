@@ -21,7 +21,7 @@ SHOW GRANTS FOR username@'host'
 
 _grant是赋予deny是拒绝revoke是取消_  
 _priviliges包括select|insert|update|delete等,逗号分割,all表示全部权限_  
-_database和table用*占位,host用%站位并可只占部分网段_
+_database和table用*占位,host用%占位并可只占部分网段_
 _with grant option让该用户拥有授权的权限_
 
 # data
