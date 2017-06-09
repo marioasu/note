@@ -24,6 +24,9 @@ str.decode('编码') - 字符
 string.
     replace('a', 'A') - 返回新值，原值不受影响
     lower()
+    split(delimiter, times) -> list
+    strip([chars])
+    startWith
 
 Booleans
 -------
@@ -34,6 +37,7 @@ False
 空值
 -------
 None
+函数的默认返回值
 
 Lists
 -------
@@ -152,12 +156,122 @@ cli中用 from filename import funcname 导入函数
     命名关键字参数也可以有缺省值
 参数顺序 - 必选参数、默认参数、可变参数、命名关键字参数和关键字参数
 对于任意函数，都可以通过类似func(*args, **kw)的形式调用它，无论它的参数是如何定义的
+函数对象有个__name__属性，可以拿到函数的名字
+
+闭包 - closure 程序结构
+-------
+def count():
+    fs = []
+    for i in range(1,5):
+        def f(j):
+            #def ff():
+                #return j*j
+            #return ff;
+            return lambda :j*j;
+        fs.append(f(i))
+    return fs
+返回闭包时牢记的一点就是：返回函数不要引用任何循环变量，或者后续会发生变化的变量。
+
+装饰器 - Decorator # 在代码运行期间动态增加功能
+-------
+接收一个函数作为参数并返回一个函数
+
+functools.partial - 偏函数
+------
+作用就是，把一个函数的某些参数给固定住（也就是设置默认值），返回一个新的函数，调用这个新函数会更简单
+max2 = functools.partial(max, 10)
+int2 = functools.partial(int, base=2)
+定义偏函数时接收可变参数相当于把默认参数加到参数元祖的左边，接收命名关键字参数相当于固定某关键字参数
+
+包/模块
+-------
+import module - 获得指向模块的module变量
+if __name__=='__main__':  -  在命令行运行时当前文件的__name__变量会被置为__main__
+__doc__ 变量可以访问文档注释
+包管理工具pip - 安装第三方模块
+环境变量PYTHONPATH 添加模块搜索路径
+
+内置函数
+-------
+sorted(list[key=func|reserve=boolean])
+len -- 实际调用对象内部的 __len__ 方法
+hasattr/getattr/setattr 操作属性
+
+OOP
+-------
+构造方法 __init__  # __new__ is the method called before __init__
+    __new__     creates the object and returns it
+    __init__    initializes the object passed as parameter
+私有变量 __var - 将变量私有并提供set方法可以检查参数、避免传入无效的参数 # 实质是转换成了_Classname.__var
+Python的“file-like object“就是一种鸭子类型 - 任何实现了read()方法的对象
+type(123) == int # True
+type(fn) == types.FunctionType
+                  BuiltinFunctionType
+                  LambdaType
+                  GeneratorType
+isinstance(var, 基本类型|类|父继承链上的类|类型元组)
+dir函数返回一个对象的所有属性和方法
+类属性和实例属性 - 实例属性会覆盖类属性
+types.MethodType 可以给实例动态添加方法 给Classname.func赋值可直接给类添加方法(对所有实例生效)
+__slots__
+    用于限制class可以定义的属性 - 用tuple赋值
+    仅对当前类的实例生效，子类不受影响
+    如果子类也定义了__slots__ 那么子类允许定义的属性是父类slots和子类slots的合集
+@property
+    将方法变成属性调用
+    @property本身会创建装饰器func.setter
+    如果使用了@property而不定义setter方法，那么这个属性为只读属性
+多重继承 - MixIn
+定制类
+    len函数访问对象的__len__方法
+    print函数访问对象的__str__方法并打印返回值
+    命令行直接输入变量Enter 输出的是__repr__方法的返回值
+    使用__iter__方法返回迭代器对象 用于for ... in循环遍历
+    __getitem__ 用于按下标取元素 [] 使中可传入切片 需要单独处理 - 用[]取值其实是调用的__getitem__方法 # 字典用(key)取值
+    __setitem__ __delitem__
+    归功于 duck type 不需要强制实现某个接口
+    __getattr__ 访问不存在的属性时调用 (类似php的魔术方法__get)
+    __call__ 直接调用对象实例 其实是调用对象内部的__call__方法
+        这就模糊了对象和函数的界限 - 他们都可以被调用
+        callable函数判断对象是否能被调用
+枚举类 - 枚举常量
+    from enum import Enum,unique
+    for name, member in Weekday.__members__.items(): 遍历枚举 member.value 为成员的值
+原类 - metaclass
+    type 函数可以查看对象的类型 - 类的类型为type 对象的类型为Package.classname
+    type 函数还可以创建类，参数:
+        class的名称
+        继承的父类集合，注意Python支持多重继承，如果只有一个父类，别忘了tuple的单元素写法
+        class的方法名称与函数绑定
+    动态语言本身支持运行期动态创建类
+    __new__
+    __bases__ 对象的父类
+    __class__ 对象是属于哪个生的
+    类是元类的实例，而实例对象是类的实例
+
+错误(异常)处理
+=======
+try ... except ...(else...) finally ...
+如果错误没有被捕获，它就会一直往上抛，最后被Python解释器捕获，打印一个错误信息，然后程序退出
+raise 抛出错误实例
+    ValueError
+    TypeError
+断言 - assert
+    assert expression, 'info ...' # 如果断言失败，assert语句本身就会抛出AssertionError
+    python解释器可以用-O参数关闭assert
+pdb调试器
+    python3 -m pdb xxx.py
+        l/n/p varname/q
+    import pdb 然后使用pdb.set_trace()在代码中设置断点
+        c 继续执行
 
 语言特性
 =======
 切片(Slice)
 -------
 list tuple string 都可以使用切片操作截取部分元素
+l[:] 左闭右开区间 可以省略开始和结尾 可以是负数
+extended slice l[a:b:step] 第三个元素表示步长 步长可以为负数 a、b的区间方向要和步长的正负一致
 
 迭代
 -------
@@ -180,7 +294,7 @@ eg. [k + '=' + v for k, v in d.items()]
 将生成式的[]改为()就可以得到一个生成器 generator保存的是算法
 带yield的generator function也可以得到一个generator
 next(g) - 获取generator的下一个元素
-generator也是可迭代对象
+生成器都是Iterator对象
 
 迭代器 表示一个惰性计算的序列
 -------
@@ -200,8 +314,25 @@ map/reduce
 -------
 python3 的map返回一个Iterator序列 可以通过list把整个序列都计算出来并返回一个list
 
+filter
+-------
+过滤序列
+
 模块
 =======
 os
 -------
 listdir
+functools
+    reduce
+    wraps
+time
+    time
+enum
+    Enum
+logging
+    DEBUG|INFO|WARNING|ERROR
+    basicConfig
+        level=xxx
+    Exception
+    info
