@@ -321,9 +321,41 @@ json 模块
 进程和线程
 -------
 python支持多进程和多线程
-涉及同步、数据共享等问题
+多进程和多线程涉及同步、数据共享等问题
 Unix／Linux系统提供了fork()系统调用，调用一次，返回两次。分别在主进程和复制出来的子进程返回 父进程返回子进程的id 子进程返回0
 python的os模块封装了常见的系统调用
+multiprocessing模块可实现跨平台的多进程
+多线程和多进程最大的不同在于，多进程中，同一个变量，各自有一份拷贝存在于每个进程中，互不影响，而多线程中，所有变量都由所有线程共享，所以，任何一个变量都可以被任何一个线程修改，因此，线程之间共享数据最大的危险在于多个线程同时改一个变量，把内容给改乱了。
+现代操作系统对IO操作已经做了巨大的改进，最大的特点就是支持异步IO
+对应到Python语言，单线程的异步编程模型称为协程，有了协程的支持，就可以基于事件驱动编写高效的多任务程序。 # 使用异步IO可以执行基于IO的多任务，基于CPU计算的多任务执行不了
+
+正则表达式
+=======
+直接给出字符，就是精确匹配
+\d可以匹配一个数字
+\w可以匹配一个字母或数字
+.可以匹配任意字符
+\s可以匹配一个空格（也包括Tab等空白符）
+'-'是特殊字符，在正则表达式中，要用'\'转义
+可以用[]表示范围
+A|B可以匹配A或B
+^表示行的开头
+$表示行的结束
+数目：
+*表示任意个字符（包括0个）
++表示至少一个字符
+?表示0个或1个字符
+{n}表示n个字符
+{n,m}表示n-m个字符
+
+re模块
+-------
+match()方法判断是否匹配，如果匹配成功，返回一个Match对象，否则返回None
+    .group(index) 提取匹配对象
+    .groups() -> tuple index从1开始的匹配对象
+split 比字符串提供的split（用固定的字符分割）更灵活 -> list
+\d+? - 非贪婪匹配数字 # 当后面的表达式符合时就让后面的表达式匹配
+re.compile('xxx') 预编译正则表达式
 
 语言特性
 =======
@@ -423,3 +455,65 @@ unittest
     TestCase
 re
     search
+
+from datetime
+-------
+import datetime # 引入datetime模块的datetime类
+----
+datetime
+    now -> datetime对象
+    fromtimestamp
+    utcfromtimestamp
+    strptime(str, format)
+    utcnow 当前的UTC时间
+datetime对象
+    timestamp -> float
+    strftime(format)
+    astimezone(timezone(timedelta(hours=8)))
+
+import timedelta # timedelta类用于datetime的加减
+----
+now + timedelta(days=2, hours=12)
+
+import timezone
+----
+tz_utc_8 = timezone(timedelta(hours=8)) # 创建时区UTC+8:00
+now.replace(tzinfo=tz_utc_8) # 强制设置为UTC+8:00
+
+from collections # collections是Python内建的一个集合模块，提供了许多有用的集合类
+-------
+import namedtuple # 方便地创建tuple的子类
+----
+Point = namedtuple('Point', ['x', 'y'])
+p = Point(1, 2)
+p.x #1 p.y #2
+isinstance(p, tuple) # true
+
+import deque # deque是为了高效实现插入和删除操作的双向列表，适合用于队列和栈
+----
+appendleft
+popleft
+
+import defaultdict # 可以定义key不存在时dict的默认值
+----
+dd = defaultdict(lambda: 'N/A')
+
+import OrderedDict # 有序的dict
+----
+
+import Counter # 简单的计数器
+-------
+
+struct
+-------
+pack
+unpack
+
+hashlib
+-------
+
+itertools
+-------
+
+urllib # urllib提供了一系列用于操作URL的功能
+-------
