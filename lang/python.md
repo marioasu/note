@@ -57,6 +57,7 @@ Directories
 -------
 list里通过遍历查找值 dict里通过索引查找值 dict是无序的
 dict.
+    [key] 获取值 # 不推荐
     get(key[,default]) - 返回None或指定的值
     pop(key) - 返回value
     .values() - 返回值序列
@@ -256,6 +257,8 @@ try ... except ...(else...) finally ...
 raise 抛出错误实例
     ValueError
     TypeError
+    IOError
+    FileNotFoundError
 断言 - assert
     assert expression, 'info ...' # 如果断言失败，assert语句本身就会抛出AssertionError
     python解释器可以用-O参数关闭assert
@@ -264,6 +267,63 @@ pdb调试器
         l/n/p varname/q
     import pdb 然后使用pdb.set_trace()在代码中设置断点
         c 继续执行
+单元测试／文档测试
+
+IO编程
+=======
+同步IO和异步IO - 区别在于是否等待IO的执行结果
+异步IO的编程模型复杂 - 回调模式 | 轮询模式
+操作IO的能力都是由操作系统提供的，每一种编程语言都会把操作系统提供的低级C接口封装起来方便使用
+
+文件读写
+-------
+open -> 打开一个文件对象（通常称为文件描述符）
+    encoding=
+    errors='ignore'
+read([size]) -> str对象
+readline # line.strip() - 删掉末尾的'\n'
+readlines -> list
+write
+close
+try... finally... close # python 引入with语句来自动调用close - with open as f:
+open返回的这种有read方法的对象，在python中统称为file-like Object 可以是文件、内存字节流、网络流、自定义流、StringIO
+
+StringIO
+-------
+在内存中读写str
+getvalue
+
+BytesIO
+-------
+内存中操作二进制数据
+
+序列化 - pickling(serialization,marshalling,flattening)
+-------
+反序列化 unpickling
+pickle 模块
+    dumps -> bytes
+    dump(obj, file-like obj)
+    loads // 反序列化
+    load(file-like obj)
+
+JSON - 标准的js对象
+-------
+None -> null
+json 模块
+    dumps -> str
+        default参数 # 转换函数 default=lambda obj: obj.__dict__
+        定义了__slots__的class没有__dict__属性
+    dump
+    loads
+        object_hook参数 # 转换函数 将反序列化的内容转换成对象
+    load
+
+进程和线程
+-------
+python支持多进程和多线程
+涉及同步、数据共享等问题
+Unix／Linux系统提供了fork()系统调用，调用一次，返回两次。分别在主进程和复制出来的子进程返回 父进程返回子进程的id 子进程返回0
+python的os模块封装了常见的系统调用
 
 语言特性
 =======
@@ -322,6 +382,29 @@ filter
 =======
 os
 -------
+name
+uname
+environ
+    get
+path
+    abspath
+    join
+    split -> tuple
+    splitext
+    isdir
+listdir
+rename
+remove
+
+shutil - os模块的补充
+-------
+copyfile
+
+io
+-------
+StringIO
+BytesIO
+
 listdir
 functools
     reduce
@@ -336,3 +419,7 @@ logging
         level=xxx
     Exception
     info
+unittest
+    TestCase
+re
+    search

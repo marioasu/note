@@ -393,8 +393,8 @@ Java Archive File
 -------
 throw 生成异常对象并交给运行时系统处理的过程
 catch 运行时系统在方法的调用栈中查找 回溯找到包含相应异常处理方法的过程
-
-
+与RuntimeExcetion不同的是,IOException一定要编写异常处理的程序代码才行
+function xxx() throws Exception
 
 
 
