@@ -41,6 +41,7 @@ None
 
 Lists
 -------
+mylist[index] - 取值
 list.
     append
     insert(index, item)
@@ -54,8 +55,9 @@ Tuples
 一旦初始化就不能修改的有序列表 - tuple的每个元素的指向是不变的
 定义只含有一个元素的元组时 用,来消除括号的歧义 (item,)
 
-Directories
+Dictionary
 -------
+mydic[key] - 取值
 list里通过遍历查找值 dict里通过索引查找值 dict是无序的
 dict.
     [key] 获取值 key不存在时会抛出 KeyError
@@ -213,6 +215,7 @@ __doc__ 变量可以访问文档注释
 sorted(list[key=func|reserve=boolean])
 len -- 实际调用对象内部的 __len__ 方法
 hasattr/getattr/setattr 操作属性
+reversed -- 反转序列
 
 OOP
 -------
@@ -254,6 +257,7 @@ __slots__
     __call__ 直接调用对象实例 其实是调用对象内部的__call__方法
         这就模糊了对象和函数的界限 - 他们都可以被调用
         callable函数判断对象是否能被调用
+    迭代通常是隐式的,譬如说一个集合类型没有实现 __contains__ 方法,那么 in 运算符就会按顺序做一次迭代搜索
 枚举类 - 枚举常量
     from enum import Enum,unique
     for name, member in Weekday.__members__.items(): 遍历枚举 member.value 为成员的值
@@ -589,3 +593,13 @@ pip3
 =======
 mysql-connector-python-rf
 aiohttp
+
+内建模块 build-in module
+=======
+collections
+-------
+namedtuple(typename, field_names[, verbose=False][, rename=False]) - 返回一个名为typename的tuple子类
+
+random
+-------
+choice(seq) - 从非空序列中随机取一个元素并返回
