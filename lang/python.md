@@ -603,3 +603,6 @@ namedtuple(typename, field_names[, verbose=False][, rename=False]) - 返回一�
 random
 -------
 choice(seq) - 从非空序列中随机取一个元素并返回
+
+math
+hypot(x, y) - 模 sqrt(x*x + y*y) 原点到 point(x, y) 的长度 斜边长度
