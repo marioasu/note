@@ -413,6 +413,37 @@ list tuple string 都可以使用切片操作截取部分元素
 l[:] 左闭右开区间 可以省略开始和结尾 可以是负数
 extended slice l[a:b:step] 第三个元素表示步长 步长可以为负数 a、b的区间方向要和步长的正负一致
 
+x or y # or运算符可能会返回x或者y本身的值
+
+magic method # 一般只有Python解释器会频繁地直接调用这些方法
+-------
+__init__
+----
+
+__repr__
+----
+
+__str__
+----
+被 str() 和 print() 函数调用 # 如果一个对象没有 __str__ 函数，而Python又需要调用它的时候，解释器会用 __repr__ 作为替代
+
+__abs__
+----
+被 abs() 函数调用
+
+__add__(self, other)
+----
+被算术运算符 + 调用 （运算符重载？）
+
+__mul__(self, other/scalar)
+----
+被算术运算符 * 调用
+中缀运算符的基本原则就是不改变操作对象
+
+__bool__
+----
+被 bool() 函数调用，如果不存在 __bool__ 方法，那么 bool(x) 会尝试调用 x.__len__() 若返回0，则 bool 会返回 False；否则返回 True
+
 迭代
 -------
 from collections import Iterable
