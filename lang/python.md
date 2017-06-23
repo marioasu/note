@@ -141,6 +141,17 @@ bool(x)
 生成器表达式(generator expression | genexps) - 可以用来创建任何类型的序列
 ----
 
+元组(tuple)
+----
+不可变的列表
+没有字段名的记录
+for循环拆包（unpacking）元组，_作无用元素的占位符
+= 平行赋值 拆包 # 左值中可用*前缀来处理剩下的元素
+% 字符串格式化拆包
+元组拆包可应用到任何可迭代对象上 - 可迭代元素拆包
+* 把一个可迭代对象拆开作为函数参数
+具名元组 collections.namedtuple(类名, 可迭代对象|空格隔开的字段名字符串) - 给记录中的字段命名
+
 运算符
 =======
 /
@@ -244,6 +255,7 @@ hasattr/getattr/setattr 操作属性
 reversed -- 反转序列
 ord -- 返回字符的Unicode编号
 chr -- 返回Unicode编号的字符表示
+divmod(a, b) -- 返回元组 (商, 余数)
 
 OOP
 -------
