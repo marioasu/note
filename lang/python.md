@@ -151,6 +151,14 @@ for循环拆包（unpacking）元组，_作无用元素的占位符
 元组拆包可应用到任何可迭代对象上 - 可迭代元素拆包
 * 把一个可迭代对象拆开作为函数参数
 具名元组 collections.namedtuple(类名, 可迭代对象|空格隔开的字段名字符串) # 工厂函数 - 给记录中的字段命名
+    专有属性：
+        _fileds类属性
+        _make(iterable)类方法
+        _asdict()实例方法 -> collections.OrderedDict
+
+对序列使用+和*
+-------
+序列中的元素是其它可变对象的引用的话（如由列表组成的列表） *操作，产生的复制指向同一个地址
 
 运算符
 =======
@@ -451,7 +459,9 @@ start_response
 -------
 list tuple string 都可以使用切片操作截取部分元素
 l[:] 左闭右开区间 可以省略开始和结尾 可以是负数
+    切片和区间(range)忽略后一个元素的好处：可以快速看出或计算出切片和区间里有几个元素；方便用任一下边将序列切分成不重叠的两部分 my_list[:x] 和 my_list[x:]
 extended slice l[a:b:step] 第三个元素表示步长 步长可以为负数 a、b的区间方向要和步长的正负一致
+seq[start:stop:step] - seq.__getitem__(slice(start, stop, step))
 
 x or y # or运算符可能会返回x或者y本身的值
 
