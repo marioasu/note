@@ -160,6 +160,14 @@ for循环拆包（unpacking）元组，_作无用元素的占位符
 -------
 序列中的元素是其它可变对象的引用的话（如由列表组成的列表） *操作，产生的复制指向同一个地址
 
+替换列表的数据类型（某些情况下更高效）
+-------
+数组 array.array
+----
+只包含数字的列表
+tofile(fp)
+frombytes(fp, len)
+
 运算符
 =======
 /
@@ -485,6 +493,10 @@ __add__(self, other)
 ----
 被算术运算符 + 调用 （运算符重载？）
 
+__iadd__
+----
++=(就地加法) a+=b类似a.extend(b) 如果类没有实现这个方法 Python会退一步调用__add__
+
 __mul__(self, other/scalar)
 ----
 被算术运算符 * 调用
@@ -687,3 +699,8 @@ choice(seq) - 从非空序列中随机取一个元素并返回
 
 math
 hypot(x, y) - 模 sqrt(x*x + y*y) 原点到 point(x, y) 的长度 斜边长度
+
+bisect - 二分法
+-------
+bisect - bisect_right 的别名
+insort - insort_right 的别名
