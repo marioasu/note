@@ -24,9 +24,9 @@ str.decode('编码') - 字符
 string.
     replace('a', 'A') - 返回新值，原值不受影响
     lower()
-    split(delimiter, times) -> list
+    split(delimiter[, times]) -> list
     strip([chars])
-    startWith
+    startswith
 
 Booleans
 -------
@@ -48,7 +48,7 @@ list.
     pop([index])
     sort() - 排序
 range(n) 产生0到n-1的序列 python3中需要用list函数将序列转换成list(生成器，同python2中的xrange)
-列表的赋值语句不会创建一份副本。你必须使用切片操作来生成一份序列的副本
+列表的赋值语句不会创建一份副本。你必须使用切片操作来生成一份序列的副本(浅复制)
 
 Tuples
 -------
@@ -76,7 +76,7 @@ set.
 | 并集
 
 Files
-Other core types - Booleans, types, None
+Other core types - types, None
 Program unit types - Functions, modules, classes
 Implementation-related types - Compiled code, stack tracebacks
 
@@ -150,7 +150,7 @@ for循环拆包（unpacking）元组，_作无用元素的占位符
 % 字符串格式化拆包
 元组拆包可应用到任何可迭代对象上 - 可迭代元素拆包
 * 把一个可迭代对象拆开作为函数参数
-具名元组 collections.namedtuple(类名, 可迭代对象|空格隔开的字段名字符串) - 给记录中的字段命名
+具名元组 collections.namedtuple(类名, 可迭代对象|空格隔开的字段名字符串) # 工厂函数 - 给记录中的字段命名
 
 运算符
 =======
@@ -170,7 +170,7 @@ python3中 / 变成了精确除法 除法的运算结果是浮点数 用 // 表�
 
 成员运算符
 -------
-in - 判断key是否在dict中
+in - 判断key是否在dict中 | 元素是否在list中
 not in
 
 身份运算符
@@ -193,13 +193,13 @@ falsy
 
 函数
 =======
-函数调用是通过栈（stack）这种数据结果实现的
+函数调用是通过栈（stack）这种数据结构实现的
 def 声明函数
 return 默认返回None
 cli中用 from filename import funcname 导入函数
-可以用简写的方式返回tuple
+可以用简写的方式返回tuple # return a, b
 普通参数（位置参数）的形参写在前面
-参数可以设置默认值 调用时指明默认形参可以跳过之前的默认参数或改变默认参数的顺序
+参数可以设置默认值 调用时指明默认形参名可以跳过之前的默认参数或改变默认参数的顺序
 默认参数在定义时被赋值 如果赋值为引用类型 多次调用将保留引用参数的值
 可以定义可变参数 *args - 在函数内部 args 接收到一个tuple
     调用时可用*前缀将序列变量打散传入函数中
@@ -249,7 +249,7 @@ __doc__ 变量可以访问文档注释
 
 内置函数
 -------
-sorted(list[key=func|reserve=boolean])
+sorted(list[,key=func|,reserve=boolean])
 len -- 实际调用对象内部的 __len__ 方法
 hasattr/getattr/setattr 操作属性
 reversed -- 反转序列
