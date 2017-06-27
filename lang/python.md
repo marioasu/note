@@ -61,7 +61,9 @@ mydic[key] - 取值
 list里通过遍历查找值 dict里通过索引查找值 dict是无序的
 dict.
     [key] 获取值 key不存在时会抛出 KeyError
+    [key] = xxx 赋值
     get(key[,default]) - 返回None或指定的值
+    setdefault(key, value)
     pop(key) - 返回value
     .values() - 返回值序列
 
@@ -167,6 +169,14 @@ for循环拆包（unpacking）元组，_作无用元素的占位符
 只包含数字的列表
 tofile(fp)
 frombytes(fp, len)
+
+映射对象 - 字典和集合
+-------
+标准库里的所有映射类型都是通过dict来实现的，因此它们有一个共同的限制 - 只有可散列的数据类型才能用作这些映射里的键
+
+字典推导 dictcomp
+----
+类似列表推导 使用{}
 
 运算符
 =======
