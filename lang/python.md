@@ -178,6 +178,34 @@ frombytes(fp, len)
 ----
 类似列表推导 使用{}
 
+映射类型
+----
+dict
+--
+setdefault
+
+collections.defaultdict
+--
+setdefault
+default_factory 在 __getitem__ -> __missing__ 函数中被调用的函数（实际是一个可调用对象,在defaultdict初始化时由用户设定），用以给未找到的元素设置值
+
+collections.OrderedDict
+--
+setdefault
+
+构造方法
+--
+Python里大多数映射类型都可以用一个映射对象或一个包含了(key, value)元素的可迭代对象来初始化
+
+UserDict -> MutableMapping -> Mapping
+-------
+MutableMapping.update - 被 __init__ 调用， 因为这个方法在背后是用self[key] = value来添加新值，所以它其实是在使用 __setitem__ 方法
+Mapping.get
+    try:
+        return self[key]
+    except KeyError:
+        return default
+
 运算符
 =======
 /
@@ -318,6 +346,7 @@ __slots__
     使用__iter__方法返回迭代器对象 用于for ... in循环遍历
     __getitem__ 用于按下标取元素 [] 使中可传入切片 需要单独处理 - 用[]取值其实是调用的__getitem__方法 # 字典用(key)取值
     __setitem__ __delitem__
+    __contains__ 被 in运算符 调用
     归功于 duck type 不需要强制实现某个接口
     __getattr__ 访问不存在的属性时调用 (类似php的魔术方法__get)
     __call__ 直接调用对象实例 其实是调用对象内部的__call__方法
