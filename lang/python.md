@@ -66,6 +66,7 @@ dict.
     setdefault(key, value)
     pop(key) - 返回value
     .values() - 返回值序列
+    keys() - 返回视图序列
 
 Sets
 -------
@@ -198,13 +199,43 @@ setdefault
 Python里大多数映射类型都可以用一个映射对象或一个包含了(key, value)元素的可迭代对象来初始化
 
 UserDict -> MutableMapping -> Mapping
--------
+--
 MutableMapping.update - 被 __init__ 调用， 因为这个方法在背后是用self[key] = value来添加新值，所以它其实是在使用 __setitem__ 方法
 Mapping.get
     try:
         return self[key]
     except KeyError:
         return default
+
+不可变映射类型
+--
+types.MappingProxyType
+
+集合 - set
+--
+集合的本质是许多唯一对象的聚集，因此，集合可用于去重
+集合中的元素必须是可散列的
+set类型本身不可散列，但是frozenset可以
+集合实现了很多基础的中缀运算符
+    a | b -- 合集 a.union(b)
+    a |= b -- a.update(b)
+    a & b -- 交集 a.intersection(b)
+    a &= b -- a.intersection_update(b)
+    a - b -- 差集 a.diffrence(b)
+    a -= b -- a.diffrence_update(b)
+    a ^ b -- 对称差集 a.symmetric_diffrence(b)
+    a ^= b -- a.symmetric_diffrence_update(b)
+中缀运算符要求两侧的被操作对象都是集合对象，但其它的所有方法则只要求传入的参数是可迭代对象
+空集 set() - 不能用字面量表示 -- {} 表示空字典
+Python里没有针对frozenset的字面量句法，所以frozenset只能通过构造方法创建
+集合推导
+    类似字典推导
+
+字典中的散列表
+-------
+散列表其实是一个稀疏数组
+往字典里添加新键有可能会改变已有键的顺序， 所以不要在迭代的过程中对字典进行修改
+Python3中 .keys() .items() .values() 方法返回的都是字典视图
 
 运算符
 =======
