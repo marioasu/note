@@ -386,8 +386,15 @@ Python不支持重载方法或函数
 内置装饰器函数
 -------
 property
+----
 classmethod
+----
+定义操作类而不是操作实例的方法，第一个参数是cls而不是self
+常见用途是定义备选构造方法
 staticmethod
+----
+与classmethod的区别是它的第一个参数不是特殊值
+其实，静态方法就是普通函数，只是碰巧在类的定义体中，而不是在模块层定义
 
 标准库中的装饰器
 -------
@@ -446,7 +453,8 @@ OOP
 构造方法 __init__  # __new__ is the method called before __init__
     __new__     creates the object and returns it
     __init__    initializes the object passed as parameter
-私有变量 __var - 将变量私有并提供set方法可以检查参数、避免传入无效的参数 # 实质是转换成了_Classname.__var
+私有变量 __var - 将变量私有并提供set方法可以检查参数、避免传入无效的参数 # 实质是转换成了 _Classname.__var 存入 __dict__ 属性中 - 名称改写(name mangling)
+    名称改写是一种安全措施，目的是避免意外访问，不能防止故意做错事
 Python的“file-like object“就是一种鸭子类型 - 任何实现了read()方法的对象
 type(123) == int # True
 type(fn) == types.FunctionType
@@ -473,7 +481,7 @@ __slots__
     len函数访问对象的__len__方法
     print函数访问对象的__str__方法并打印返回值
     命令行直接输入变量Enter 输出的是__repr__方法的返回值
-    使用__iter__方法返回迭代器对象 用于for ... in循环遍历
+    使用__iter__方法返回迭代器对象 用于for ... in循环遍历 用于拆包
     __getitem__ 用于按下标取元素 [] 使中可传入切片 需要单独处理 - 用[]取值其实是调用的__getitem__方法 # 字典用(key)取值
     __setitem__ __delitem__
     __contains__ 被 in运算符 调用
@@ -512,6 +520,27 @@ del语句删除名称，而不是对象
 
 Python控制台会自动把_变量绑定到结果不为None的表达式结果上
 对 += 或 *= 所做的增量赋值来说,如果左边的变量绑定的是不可变对象,会创建新对象;如果是可变对象,会就地修改
+
+符合Python风格的对象
+=======
+得益于Python的数据模型，可以通过鸭子类型(duck typing)，按照预定行为实现对象所需方法，使得自定义类型可以像内置类型那样自然
+
+对象表示形式
+-------
+repr() - 以便于开发者理解的方式返回对象的字符串表示形式
+str() - 以便于用户理解的方式返回对象的字符串表示形式
+    特殊方法 __repr__ 和 __str__
+其它表示形式
+    __bytes__ - bytes() 函数调用它获取对象字节序列表示形式
+    __format__ - 被内置函数 format() 和 str.format() 方法调用，使用特殊的格式代码显示对象的字符串表示形式
+        如果没有定义 __format__ 方法，从object继承的方法会返回str(my_object)
+
+使用 __slots__ 属性节省空间
+-------
+将 __slots__ 属性设置为可迭代对象（如元组）来替代 __dict__ ，可以节省空间
+每个子类都要定义 __slots__ 属性，解释器会忽略继承的 __slots__ 属性
+实例只能拥有 __slots__ 中列出的属性
+如果不把 '__weakref__' 加入 __slots__,实例就不能作为弱引用的目标 ??
 
 错误(异常)处理
 =======
