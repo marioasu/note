@@ -1,3 +1,7 @@
+在编译时检查类型的语言是静态类型语言,在运行时检查类型的语言是动态类型语言
+如果一门语言很少隐式转换类型,说明它是强类型语言;如果经常这么做,说明它是弱类型语言
+Python 是动态强类型语言
+
 Data Types
 =======
 Numbers
@@ -481,7 +485,9 @@ __slots__
     len函数访问对象的__len__方法
     print函数访问对象的__str__方法并打印返回值
     命令行直接输入变量Enter 输出的是__repr__方法的返回值
-    使用__iter__方法返回迭代器对象 用于for ... in循环遍历 用于拆包
+    __contains__ in 判断 - 没有 __contains__ 方法时Python会尝试使用 __getitem__ 方法
+    使用__iter__方法返回迭代器对象 用于for ... in循环遍历 用于拆包 - 当没有 __iter__ 方法时，Python会用 __getitem__方法迭代(后备机制)
+    -- 鉴于序列协议的重要性,如果没有 __iter__ 和 __contains__ 方法,Python 会调用 __getitem__ 方法,设法让迭代和 in 运算符可用
     __getitem__ 用于按下标取元素 [] 使中可传入切片 需要单独处理 - 用[]取值其实是调用的__getitem__方法 # 字典用(key)取值
     __setitem__ __delitem__
     __contains__ 被 in运算符 调用
@@ -551,6 +557,9 @@ Python 的序列协议只需要 __len__ 和 __getitem__ 两个方法
 
 接口：从协议到抽象基类
 =======
+序列协议
+-------
+__contains__ # Container | __iter__ # Iterable | __len__ # Sized | __getitem__ | __reserved__ | __setitem__ # 可变序列
 
 错误(异常)处理
 =======
@@ -915,6 +924,8 @@ aiohttp
 collections
 -------
 namedtuple(typename, field_names[, verbose=False][, rename=False]) - 返回一个名为typename的tuple子类
+abc (抽象基类)
+    Sequence
 
 random
 -------
