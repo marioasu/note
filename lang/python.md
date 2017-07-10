@@ -501,6 +501,7 @@ __slots__
     __eq__ - 比较两个对象，结果相等（==运算符） -> True/False
     __defaults__ - 函数的默认值
     迭代通常是隐式的,譬如说一个集合类型没有实现 __contains__ 方法,那么 in 运算符就会按顺序做一次迭代搜索
+    __mro__ - 方法解析顺序 Method Resolution Order
 枚举类 - 枚举常量
     from enum import Enum,unique
     for name, member in Weekday.__members__.items(): 遍历枚举 member.value 为成员的值
@@ -560,6 +561,21 @@ Python 的序列协议只需要 __len__ 和 __getitem__ 两个方法
 序列协议
 -------
 __contains__ # Container | __iter__ # Iterable | __len__ # Sized | __getitem__ | __reserved__ | __setitem__ # 可变序列
+
+继承
+=======
+子类化内置类型(内置类型的原生方法使用C语言实现)时，特殊方法不会被覆盖 - 类似内置类型在父类中被类而不是对象调用 # 这违背了始终从实例所属的类开始调用方法的原则
+不要子类化内置类型，应该继承collections模块里的类(UserDict,UserList,UserString...)
+直接在类上调用实例方法时，必须显式传入self参数，因为这样访问的是未绑定方法(unbound method)
+
+处理多重继承
+-------
+继承接口 - 创建子类型，实现"是什么"关系
+继承实现 - 通过重用避免代码重复
+使用抽象基类显式表示接口
+一个类为多个不相关的子类提供方法实现，而不体现"是什么"关系，应该明确定义为混入类(mixin class)
+不要子类化多个具体类
+优先使用对象组合，而不是类继承
 
 错误(异常)处理
 =======
