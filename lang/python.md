@@ -14,7 +14,8 @@ complex(复数) 用 a+bj 或 complex(a,b) 表示
 相关函数
     abs(a)
     max(a...)
-numbers.integral 是 int 的虚拟超类 - 抽象基类(Abstract Base Class，ABC)
+numbers.integral 是 int 的虚拟（抽象）超类 - 抽象基类(Abstract Base Class，ABC)
+numbers.Real 实数的抽象超类
 
 Strings
 -------
@@ -297,6 +298,13 @@ pass
 -------
 用作空函数和if等的占位
 
+运算符重载
+-------
+遵守运算符的基本规则: 始终返回一个新对象
+__abs__ | __neg__ | __pos__ | __invert__
+序列应该支持+运算符(用于拼接)和*运算符(用于重复复制)
+捕获 TypeError return NotImplemented 让第二个操作数类型还有机会执行计算(反向方法) # 如果反向方法也返回 NotImplemented ，Python会抛出 TypeError
+
 条件判断
 =======
 elif 是 else if 的缩写
@@ -576,6 +584,10 @@ __contains__ # Container | __iter__ # Iterable | __len__ # Sized | __getitem__ |
 一个类为多个不相关的子类提供方法实现，而不体现"是什么"关系，应该明确定义为混入类(mixin class)
 不要子类化多个具体类
 优先使用对象组合，而不是类继承
+
+迭代
+=======
+所有生成器都是迭代器，因为生成器完全实现了迭代器接口
 
 错误(异常)处理
 =======
@@ -908,6 +920,8 @@ hashlib
 
 itertools
 -------
+zip
+zip_longest
 
 requests
 -------
