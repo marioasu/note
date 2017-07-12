@@ -598,6 +598,11 @@ __iter__ 返回self，以便在该使用可迭代对象的地方使用迭代器(
 执行生成器函数，返回一个（实现了迭代器接口的）生成器对象。生成器函数定义体中的return语句会触发生成器对象抛出　StopIteration 异常
 也可以用生成器表达式（惰性的列表推导）生成生成器对象　＃　生成器表达式是语法糖，可以被生成器函数替代
 
+标准库中的生成器函数
+-------
+os.walk
+itertools.takewhile(boolfunc, iterable)
+
 错误(异常)处理
 =======
 try ... except ...(else...) finally ...
@@ -931,6 +936,10 @@ itertools
 -------
 zip
 zip_longest
+生成器（工厂）函数 - 返回生成器
+----
+count(start, step) - 生成等差数列
+takewhile - 生成一个使用另一个生成器的生成器(类似filter)
 
 requests
 -------
