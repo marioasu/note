@@ -603,6 +603,44 @@ __iter__ 返回self，以便在该使用可迭代对象的地方使用迭代器(
 os.walk
 itertools.takewhile(boolfunc, iterable)
 
+上下文管理器和with块
+=======
+上下文管理器协议包括 __enter__ 和 __exit__ 方法
+执行 with 返回上下文管理器对象 as 子句 在上下文管理器对象上调用 __enter__ 方法把值绑定到目标变量上
+控制流程退出 with 块时 会在上下文管理器上调用 __exit__ 方法
+
+contextlib模块
+-------
+@contextmanager - 这个装饰器把简单的生成器函数变成上下文管理器 yield语句前面的代码在with块开始时执行,yield语句后面的代码在with块结束时执行
+contextmanager 装饰器会把函数包装成实现 __enter__ 和 __exit__ 方法的类
+
+用作协程的生成器
+=======
+inspect.getgerneratorstate() - 获取协程状态
+    'GEN_CREATED' - 等待开始执行
+    'GEN_RUNNING' - 多线程应用中可以看到
+    'GEN_SUSPENDED' - 暂停
+    'GEN_CLOSED' - 执行结束
+
+next(coro)/coro.send(None) - 预激协程
+coro.send(xxx) - 向协程发送数据
+coro.close() - 终止协程
+协程中未处理的异常会终止协程
+yield from 用于简化for循环中的yield表达式
+    yield from iterable
+    相当于
+    for x in iterable
+        yield x
+
+异步编程
+-------
+使用 yield from 和 asyncio 模块
+协程可在单个线程中管理并发活动
+
+离线和连续事件仿真
+-------
+可以使用 多线程 或 单线程中使用面向事件的编程技术（事件循环驱动的回调 或 协程）实现
+
 错误(异常)处理
 =======
 try ... except ...(else...) finally ...
