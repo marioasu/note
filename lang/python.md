@@ -624,13 +624,19 @@ inspect.getgerneratorstate() - 获取协程状态
 
 next(coro)/coro.send(None) - 预激协程
 coro.send(xxx) - 向协程发送数据
-coro.close() - 终止协程
+coro.throw() - 作用是让调用方抛出异常，在生成器中处理 # 如果生成器处理了传入的异常，代码会向前执行到下一个yield表达式，产出的值将会成为返回值；如果生成器未处理，异常会向上冒泡到调用方的上下文中
+coro.close() - 终止协程(生成器)
 协程中未处理的异常会终止协程
-yield from 用于简化for循环中的yield表达式
+yield from 用于简化for循环中的yield表达式 # yield from 句法会自动预激协程
     yield from iterable
     相当于
     for x in iterable
         yield x
+
+获取协程的返回值
+-------
+协程中的return表达式的返回值保存在 StopIteration 的 value 属性中
+yield from 结构会在内部自动捕获 StopIteration 异常，并把value属性的值作为表达式的值
 
 异步编程
 -------
