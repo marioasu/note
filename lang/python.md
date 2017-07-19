@@ -642,6 +642,8 @@ yield from 结构会在内部自动捕获 StopIteration 异常，并把value属�
 -------
 使用 yield from 和 asyncio 模块
 协程可在单个线程中管理并发活动
+在 asyncio 包中, yield from 的作用是把控制权交给事件循环
+事件循环通过基于回调的底层API，在阻塞的操作执行完毕后获得通知，然后把结果发给暂停的协程
 
 离线和连续事件仿真
 -------
@@ -651,7 +653,7 @@ yield from 结构会在内部自动捕获 StopIteration 异常，并把value属�
 concurrent.futures
 -------
 with futures.ThreadPoolExecutor(max_workers=n) as executor:
-    executor.map - 直接得到future结果（迭代器）
+    executor.map - 直接得到future结果（迭代器） # 返回结果的顺序和调用开始的顺序相同
     executor.submit - 创建future
     futures.as_completed(future_list) - 在future运行结束后产出future
         future.result() - 获取future的结果
@@ -661,6 +663,7 @@ GIL (Global Interpreter Lock, 全局解释器锁)
 CPython受GIL的限制，任何时候都只允许运行一个线程，无法实现并行 # 一次只允许使用一个线程执行Python字节码
 GIL 几乎对 I/O 密集型处理无害 # I/O 密集型作业使用 ProcessPoolExecutor 类得不到任何好处(使用ThreadPoolExecutor即可)
 标准库中所有执行阻塞型I/O操作的函数，在等待操作系统返回结果时都会释放GIL
+time.sleep 也会释放GIL
 使用 concurrent.futures 模块能把工作分配给多个Python进程 绕开 GIL 实现并行计算 # ProcessPoolExecutor
 ProcessPoolExecutor 线程池中的默认线程数是 os.cpu_count()
 
@@ -985,6 +988,10 @@ import OrderedDict # 有序的dict
 
 import Counter # 简单的计数器
 -------
+
+tqdm
+-------
+tqdm - 能处理任何可迭代对象，生成迭代器，显示迭代进度
 
 struct
 -------
