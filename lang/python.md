@@ -646,6 +646,23 @@ yield from 结构会在内部自动捕获 StopIteration 异常，并把value属�
 离线和连续事件仿真
 -------
 可以使用 多线程 或 单线程中使用面向事件的编程技术（事件循环驱动的回调 或 协程）实现
+生成器的三种代码编写风格： 拉取式（迭代器） 推送式（计算平均值） 任务式（协程）
+
+concurrent.futures
+-------
+with futures.ThreadPoolExecutor(max_workers=n) as executor:
+    executor.map - 直接得到future结果（迭代器）
+    executor.submit - 创建future
+    futures.as_completed(future_list) - 在future运行结束后产出future
+        future.result() - 获取future的结果
+
+GIL (Global Interpreter Lock, 全局解释器锁)
+-------
+CPython受GIL的限制，任何时候都只允许运行一个线程，无法实现并行 # 一次只允许使用一个线程执行Python字节码
+GIL 几乎对 I/O 密集型处理无害 # I/O 密集型作业使用 ProcessPoolExecutor 类得不到任何好处(使用ThreadPoolExecutor即可)
+标准库中所有执行阻塞型I/O操作的函数，在等待操作系统返回结果时都会释放GIL
+使用 concurrent.futures 模块能把工作分配给多个Python进程 绕开 GIL 实现并行计算 # ProcessPoolExecutor
+ProcessPoolExecutor 线程池中的默认线程数是 os.cpu_count()
 
 错误(异常)处理
 =======
@@ -874,6 +891,7 @@ filter
 sys
 -------
 argv
+stdout.flush() - 刷新缓冲区（正常情况下遇到换行才会刷新stdout缓冲）
 
 os
 -------
