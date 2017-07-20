@@ -254,7 +254,7 @@ Python3中 .keys() .items() .values() 方法返回的都是字典视图
 
 bytes
 -------
-字面量以b开头 - 可能有ASCII字符、转义序列、十六进制转义序列三种显示方式
+字面量以b开头 - 可能有ASCII字符、转义序列、十六进制转义序列三种显示方式 # b'The string' - bytes type should only contain ASCII characters
 bytes(str, encoding='utf-8') - 以 utf-8 编码从str对象构建bytes
     可通过可迭代对象构造
     可通过实现了缓冲协议的对象(bytes,bytesarray,memoryview,array.array)构造
