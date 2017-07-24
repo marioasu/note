@@ -667,6 +667,11 @@ time.sleep 也会释放GIL
 使用 concurrent.futures 模块能把工作分配给多个Python进程 绕开 GIL 实现并行计算 # ProcessPoolExecutor
 ProcessPoolExecutor 线程池中的默认线程数是 os.cpu_count()
 
+asyncio 包
+-------
+使用事件循环驱动的协程实现并发
+
+
 错误(异常)处理
 =======
 try ... except ...(else...) finally ...
