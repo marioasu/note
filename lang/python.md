@@ -670,7 +670,10 @@ ProcessPoolExecutor 线程池中的默认线程数是 os.cpu_count()
 asyncio 包
 -------
 使用事件循环驱动的协程实现并发
-
+asyncio.coroutine 装饰的协程由调用方使用 yield from 驱动或由 asyncio 包的某个函数(eg. asyncio.async -> Task)驱动
+使用 Task.cancel() 方法在协程内部抛出 asyncio.CancelledError 异常， 协程只能在暂停的yield处取消，可以在此处理CancelledError异常
+asyncio 包中有多个函数会自动(使用 asyncio.async 函数)把参数指定的协程包装在 asyncio.Task 对象中， eg. BaseEventLoop.run_until_complete() 方法
+asyncio.wait(coro/future_iterable) -> coro # wait 会分别把各个协程包装进一个Task对象
 
 错误(异常)处理
 =======
