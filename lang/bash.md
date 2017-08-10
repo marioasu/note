@@ -2,6 +2,24 @@
 =======
 引用变量时最好给变量名加上花括号{},帮助解释器识别变量边界
 变量的赋值默认是字符串赋值 - 执行计算使用 $(($a+$b)) / $[$a+$b] / `expr $a+$b`
+$- 表示当前shell选项 其中 i 表示 interactive 所以可以用 [[ $- = *i* ]] 判断是否处于交互模式
+$PS1 命令提示符变量
+
+文件描述符 - file descriptor
+-------
+1 standard output (stdout)
+2 standard error (stderr)
+2>&1 将标准错误重定向到标准输出 其中&表明1是标准输出文件描述符而不是文件名
+2>&1 | 等价于 |&
+
+history expansion
+-------
+!n - 执行history中的第n条记录 n可以是负数 !! 等价于 !-1 （上一条命令）
+!keywords !?keywords - 搜索执行过的命令
+^str1^str2^ - 替换并执行上一条命令 !!:[g]s/str1/str2/ 可以搜索并替换
+!!:^ !!:$ !!:n !!:m-n !!:* - 分别表示上一条命令的第一个、最后一个、第n个、第m-n个和所有参数
+:h - remove the trailing pathname
+:p - 预览命令
 
 数据类型
 =======
