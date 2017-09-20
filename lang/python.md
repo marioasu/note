@@ -312,7 +312,7 @@ elif 是 else if 的缩写
 falsy
 -------
 数字0
-空字符串 空list - __len__() == 0
+空字符串 空list 空dict - __len__() == 0
 
 函数
 =======
@@ -452,7 +452,7 @@ __doc__ 变量可以访问文档注释
 
 内置函数
 -------
-sorted(list[,key=func|,reserve=boolean])
+sorted(list[,key=func|,reverse=boolean])
 len -- 实际调用对象内部的 __len__ 方法
 hasattr/getattr/setattr 操作属性
 reversed -- 反转序列
@@ -934,8 +934,15 @@ listdir
 functools
     reduce
     wraps - 将被装饰的函数的属性(__name__, __doc__等)复制到新函数中
-time
-    time
+
+import time
+-------
+time.time() - 当前时间戳
+time.strftime(format[, t]) - 时间的字符串表示 第二个参数默认是 time.localtime() 的返回值
+time.strptime(string[, format]) - 字符串按指定格式解析成time.struct_time
+time.localtime([secs]) -  时间戳转time.struct_time 默认参数是当前时间戳
+time.mktime(t) - time.localtime() 的反函数，time.struct_time转时间戳
+
 enum
     Enum
 logging

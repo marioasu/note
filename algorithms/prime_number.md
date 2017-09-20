@@ -13,7 +13,7 @@ def _int_iter():
         n = n + 1
         yield n
 
-def  _not_divisible(n):
+def _not_divisible(n):
     return lambda x:x % n > 0
 
 def primes():

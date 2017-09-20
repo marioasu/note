@@ -1,14 +1,13 @@
 <?php
 /* 单例模式 */
 class Sigleton {
-	static private $_instance = null;
+	private static $_instance = null;
 
-	private function __construct() {
-
-	}
+	private function __construct() {}
 
 	public static function getInstance() {
 		if (!self::$_instance) {
+		// if (!(self::$_instance instanceof self))
 			self::$_instance = new self();
 		}
 
@@ -24,7 +23,7 @@ var_dump($obj1 === $obj2);
 
 /* 可以创建多个实例的单件模式 */
 class User { // 为每个user创建一个实例
-	static private $_instance = array();
+	private static $_instance = array();
 	private $_uid;
 
 	private function __construct($uid) {
