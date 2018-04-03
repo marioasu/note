@@ -189,9 +189,9 @@ html {
     height: 100%;
 }
 
-backgroud-attachment: fixed;
-backgroud-origin: border-box/padding-box/content-box;
-backgroud-clip: border-box/padding-box/content-box;
+background-attachment: fixed;
+background-origin: border-box/padding-box/content-box;
+background-clip: border-box/padding-box/content-box;
 background-size: 100px 200px;
                  100px auto;
                  100% 100%;
@@ -246,4 +246,3 @@ animation-timing-function
 animation-iteration-count
 animation-fill-mode: forwards;
 animation-play-state: paused;
-
